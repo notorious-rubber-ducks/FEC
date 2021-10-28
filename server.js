@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/*', (req, res) => {
   // helper function just adds API key to headers
-  //
   const modifiedheader = helper(req.headers);
   const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
 
