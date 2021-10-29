@@ -1,0 +1,15 @@
+.container {
+  padding-left: 8%;
+  padding-right: 8%;
+  width: 80%;
+}
+
+#header {
+  position: fixed;
+  background-image: linear-gradient(to right, #b00b69, #420420);
+  max-width: 80%;
+  width: 80%;
+  height: 80px;
+  color: white;
+  margin: auto;
+}
