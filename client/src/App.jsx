@@ -1,14 +1,19 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
-import Questions from './components/questions/Questions.jsx';
-import Ratings from './components/ratings/Ratings.jsx';
-import Related from './components/related/Related.jsx';
+// import Questions from './components/questions/Questions.jsx';
+// import Ratings from './components/ratings/Ratings.jsx';
+// import Related from './components/related/Related.jsx';
 import AppContext from './hooks/context';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
+  const [loading, setLoading] = useState(true);
+
   let id = '';
+
   useEffect(() => {
     if (defaultItem.id) {
       id = defaultItem.id;
@@ -21,16 +26,23 @@ export default function App() {
           [useData] = data;
         }
         setDefaultItem(useData);
+        setLoading(false);
       })
       .catch((err) => err);
   }, []);
+
+  // conditional render
+  if (loading) {
+    return <div>Loading now...</div>;
+  }
+
   return (
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
       <div>
         <Overview />
-        <Related />
+        {/* <Related />
         <Questions />
-        <Ratings />
+        <Ratings /> */}
       </div>
     </AppContext.Provider>
   );
