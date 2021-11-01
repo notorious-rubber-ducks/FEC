@@ -8,7 +8,10 @@ const StarRatings = ({ id }) => {
     axios
       .get(`/reviews/?product_id=${id}`)
       .then(({ data }) => {
-        setAvgRating((data.results.reduce((a, b) => (a + b.rating), 0)) / data.results.length);
+        setAvgRating(
+          data.results.length === 0 ? setAvgRating(0)
+            : (data.results.reduce((a, b) => (a + b.rating), 0)) / data.results.length,
+        );
       })
       .catch((err) => err);
   }, []);
