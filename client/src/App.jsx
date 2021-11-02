@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
-// import Questions from './components/questions/Questions.jsx';
-// import Ratings from './components/ratings/Ratings.jsx';
-// import Related from './components/related/Related.jsx';
+import Questions from './components/questions/Questions.jsx';
+import Ratings from './components/ratings/Ratings.jsx';
+import Related from './components/related/Related.jsx';
 import AppContext from './hooks/context';
 
 export default function App() {
