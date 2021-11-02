@@ -12,28 +12,28 @@
   top: 0;
   white-space: nowrap;
   overflow: hidden;
-  color: yellow;
+  color: #000;
 }
 
 .empty-stars:before,
 .full-stars:before {
   content: "\2605\2605\2605\2605\2605";
-  font-size: 30pt;
+  font-size: 12pt;
 }
 
 .empty-stars:before {
   -webkit-text-fill-color: rgb(245, 239, 239);
-  -webkit-text-stroke: 2px yellow;
+  -webkit-text-stroke: 2px #000;
 }
 
 .full-stars:before {
-  -webkit-text-stroke: 1px yellow;
+  -webkit-text-stroke: 1px #000;
 }
 
 /* Webkit-text-stroke is not supported on firefox or IE */
 /* Firefox */
 @-moz-document url-prefix() {
   .full-stars{
-    color: yellow;
+    color: #000;
   }
 }

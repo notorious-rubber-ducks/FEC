@@ -30,6 +30,8 @@ body {
   height: auto;
   margin: auto;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -46,10 +48,6 @@ button {
 
 a {
   cursor: pointer;
-}
-
-div {
-  padding: 5px;
 }
 
 .scrollable::-webkit-scrollbar {
