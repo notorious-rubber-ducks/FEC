@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';

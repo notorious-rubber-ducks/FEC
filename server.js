@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const path = require('path');
 const express = require('express');
 const { default: axios } = require('axios');
@@ -19,7 +20,6 @@ app.get('/*', (req, res) => {
   // helper function just adds API key to headers
   console.log('GET req initiated');
   const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
-  console.log(APIUrl);
   axios
     .get(APIUrl)
     .then(({ data }) => {
