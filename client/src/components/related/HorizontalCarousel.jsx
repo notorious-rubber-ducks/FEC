@@ -3,21 +3,20 @@ import React, { useState } from 'react';
 import ProductCard from './ProductCard.jsx';
 
 const buttonStyle = {
-  margin: '10px',
+  margin: 'auto 10px',
   cursor: 'pointer',
   fontSize: '16pt',
-  transition: '0.4s ease',
-  borderRadius: '4px 0 0 4px',
+  borderRadius: '4px',
+  height: '100%',
   userSelect: 'none',
+  backgroundColor: '#fff',
   border: '0',
 };
 
 export default function HorizontalCarousel({ items }) {
   // define constants
-  const carouselWidth = window.innerWidth * 0.80;
   const carouselHeight = 324;
-  const cardWidth = 222;
-  console.log(carouselWidth);
+  const cardWidth = 220;
 
   const [location, setLocation] = useState(0);
 
@@ -34,24 +33,24 @@ export default function HorizontalCarousel({ items }) {
     }
   }
 
+  // empty button used to ensure carousel boundaries is maintained - dummy component
   const emptyButton = (
     <button
       type="button"
-      style={({ backgroundColor: '#fff', color: '#fff', ...buttonStyle })}
+      style={({ opacity: '0', color: '#fff', ...buttonStyle })}
     >
       _
     </button>
   );
 
   return (
-    // Carousel
+  // Carousel
     <div
       id="carousel"
-      className="carousel slide"
+      className="carousel"
       style={{
         display: 'flex',
-        maxWidth: `${carouselWidth}px`,
-        width: `${carouselWidth}px`,
+        width: '100%',
         maxHeight: `${carouselHeight}px`,
         margin: 'auto',
       }}
@@ -74,10 +73,8 @@ export default function HorizontalCarousel({ items }) {
         id="carousel-inner"
         style={{
           display: 'flex',
-          // border: '1px solid #000',
           overflow: 'hidden',
           whiteSpace: 'nowrap',
-          // borderRadius: '4px',
         }}
       >
         {items.map((item) => (
@@ -90,7 +87,7 @@ export default function HorizontalCarousel({ items }) {
       </span>
 
       {/* Forward Button */}
-      {(location + window.innerWidth * 0.8) >= (items.length * cardWidth + 40) ? emptyButton : (
+      {(location + document.getElementById('app').clientWidth) >= (items.length * cardWidth + 40) ? emptyButton : (
         <button
           id="related-carousel-button-next"
           onClick={handleClick}

@@ -60,7 +60,6 @@ function Related() {
     <RelatedContext.Provider value={{ setProductId }}>
       <div>
         <div id="related-products">
-          {currentId}
           <HorizontalCarousel items={related} />
         </div>
         {/* <div id="your-outfit">
