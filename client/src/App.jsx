@@ -8,7 +8,10 @@ import AppContext from './hooks/context';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
+  const [loading, setLoading] = useState(true);
+
   let id = '';
+
   useEffect(() => {
     if (defaultItem.id) {
       id = defaultItem.id;
@@ -21,16 +24,25 @@ export default function App() {
           [useData] = data;
         }
         setDefaultItem(useData);
+        setLoading(false);
       })
       .catch((err) => err);
   }, []);
+
+  // conditional render
+  if (loading) {
+    return (
+      <div>Loading now...</div>
+    );
+  }
+
   return (
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
       <div>
         <Overview />
         <Related />
-        <Questions />
-        <Ratings />
+        {/* <Questions />
+        <Ratings /> */}
       </div>
     </AppContext.Provider>
   );
