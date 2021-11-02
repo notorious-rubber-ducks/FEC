@@ -6,7 +6,9 @@ import Overview from './components/overview/Overview.jsx';
 import Questions from './components/questions/Questions.jsx';
 import Ratings from './components/ratings/Ratings.jsx';
 import Related from './components/related/Related.jsx';
+import ReviewsList from './components/ratings/ReviewsList.jsx';
 import AppContext from './hooks/context';
+import StarRatings from './components/sharedComponents/StarRatings.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
@@ -40,7 +42,7 @@ export default function App() {
 
   return (
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
-      <div>
+      <div id="test">
         <Overview />
         <Related /> 
         <Questions />
