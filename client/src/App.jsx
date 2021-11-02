@@ -33,16 +33,18 @@ export default function App() {
 
   // conditional render
   if (loading) {
-    return <div>Loading now...</div>;
+    return (
+      <div>Loading now...</div>
+    );
   }
 
   return (
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
       <div>
         <Overview />
-        {/* <Related />
+        <Related /> 
         <Questions />
-        <Ratings /> */}
+        <Ratings /> 
       </div>
     </AppContext.Provider>
   );
