@@ -4,8 +4,27 @@ import axios from 'axios';
 export default function Helpful ({ helpfulness, calledFrom, id}) {
   let apiEndPoint;
 
-  let [helpful, setHelpful] = useState(helpfulness);
+  let helpLinkStyling = {
+    'textDecoration': 'underline',
+    color: 'blue'
+  };
 
+  let reportLinkStyling;
+
+  let [helpful, setHelpful] = useState(helpfulness);
+  let [reported, setReported] = useState('Report');
+
+  if (reported === 'Report') {
+    reportLinkStyling = {
+      'textDecoration': 'underline',
+      color: 'blue'
+    };
+  } else {
+    reportLinkStyling = {
+      'textDecoration': 'none',
+      color: 'black'
+    };
+  }
 
   if (calledFrom === 'q') {
     apiEndPoint = `/qa/questions/${id}`
@@ -15,34 +34,32 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
     apiEndPoint = `/reviews/${id}`
   }
 
+  let fontStyle = {
+    'float':'right',
+    fontSize: 12
+  }
 
   function isHelpful() {
-
     setHelpful(helpfulness + 1);
-
     axios.put(`${apiEndPoint}/helpful`);
   }
 
   function report() {
-    console.log('reported');
+    setReported('Reported');
     axios.put(`${apiEndPoint}/report`);
   }
 
-  let linkStyling = {
-    'textDecoration': 'underline',
-    color: 'blue'
-  };
-
   if(calledFrom === 'q') {
     return (
-      <span style={{'float':'right'}}>
-        Helpful? <a onClick={isHelpful} style={linkStyling}>Yes({helpful})</a>
+      <span style={fontStyle}>
+        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a> {'\u00A0'} {/* <- non-breaking space */}
       </span>
     )
   } else {
     return (
-      <span style={{'float':'right'}}>
-        Helpful? <a onClick={isHelpful} style={linkStyling}>Yes({helpful})</a> <a onClick={report} style={linkStyling}>Report</a>
+      <span style={fontStyle}>
+        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a>{'\u00A0'} {/* <- non-breaking space */}
+        <a onClick={report} style={reportLinkStyling}>{reported}</a>
       </span>
     )
   }

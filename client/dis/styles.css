@@ -1,7 +1,15 @@
+html,
+body {
+  background-color: #f0e0d6;
+  color: maroon;
+  height: 100%;
+}
+
 .container {
   padding-left: 8%;
   padding-right: 8%;
   width: 80%;
+  height: 100%;
 }
 
 #header {
@@ -9,6 +17,53 @@
   background-image: linear-gradient(to right, #b00b69, #420420);
   max-width: 80%;
   width: 80%;
+  border: 1px solid black;
   color: white;
   margin: auto;
+}
+
+#app {
+  background-color: #d9bfb7;
+  background-position: bottom;
+  padding-top: 5%;
+  width: 80%;
+  height: auto;
+  margin: auto;
+  overflow: auto;
+}
+
+button {
+  display: inline-block;
+  padding: 5px;
+  border: 2px solid maroon;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2px;
+  text-align: center;
+  color: #0f0c5d;
+  background-color: #d6daf0;
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+div {
+  padding: 5px;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #f0e0d6;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #b00b69;
+}
+
+.scrollable::-webkit-scrollbar-button {
+  background: maroon;
 }

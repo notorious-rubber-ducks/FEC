@@ -40,9 +40,9 @@ export default function App() {
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
       <div>
         <Overview />
-        <Related />
-        {/* <Questions />
-        <Ratings /> */}
+        <Related /> 
+        <Questions />
+        <Ratings /> 
       </div>
     </AppContext.Provider>
   );
