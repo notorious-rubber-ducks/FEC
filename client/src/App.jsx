@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Overview from './components/overview/Overview.jsx';
@@ -42,11 +44,9 @@ export default function App() {
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
       <div id="test">
         <Overview />
-        {/* <Related />
-        <Questions /> */}
-        {/* <Ratings /> */}
-        <StarRatings id={defaultItem.id} />
-        <ReviewsList id={defaultItem.id} />
+        <Related /> 
+        <Questions />
+        <Ratings /> 
       </div>
     </AppContext.Provider>
   );
