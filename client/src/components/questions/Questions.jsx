@@ -10,11 +10,13 @@ export default function Questions() {
   //
   let [questions, setQuestions] = useState([]);
   let [additional, setAdditional] = useState(false);
+  let [showBtn, setShowBtn] = useState(false);
   let [showModal, setShowModal] = useState(false);
 
   let showMore;
 
   useEffect( () => {
+    setAdditional(false);
     axios.get(`/qa/questions/?product_id=${currItem.id}&count=10`)
       .then(({ data }) => {
         //console.log(data);
@@ -22,16 +24,15 @@ export default function Questions() {
       })
       .catch((err) => err);
 
-  }, []);
+  }, [currItem]);
 
   const showAdditional = function () {
-    console.log('show additional clicked')
     setAdditional(true);
   };
 
   //console.log(questions);
 
-  if (questions.length > 4) {
+  if (questions.length > 4 && !additional) {
     showMore = (<button style={{float: 'left'}} onClick={showAdditional}>More Answered Questions</button>);
   } else {
     showMore = (<div></div>);
@@ -41,10 +42,10 @@ export default function Questions() {
     <div>
       {showModal && <QuestionModal closeModal={setShowModal}/>}
       <h2>Questions {'&'} Answers</h2>
-      <div className='scrollable' style={{border: '1px solid black', maxHeight: 600,'overflow-y':'scroll'}}>
+      <div className='scrollable' style={{border: '1px solid black', maxHeight: 600, overflowY:'scroll'}}>
         {questions.map((question, index) => {
           if (index < 4 || additional){
-            return (<div key={question.id}><SingleQuestion q={question}/><br/> </div>)
+            return (<div key={question.question_id}><SingleQuestion q={question}/><br/> </div>)
           }
         })}
       </div>

@@ -1,13 +1,14 @@
 .modalBackground {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(200, 200, 200, 0.3);
+  background-color: rgba(114, 114, 114, 0.5);
   position: fixed;
   top: 10px;
   left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .modalContainer {
@@ -25,6 +26,10 @@
   display: inline-block;
   text-align: center;
   margin-top: 10px;
+}
+
+.modalContainer .body input {
+  width: 400px;
 }
 
 .titleCloseBtn {
@@ -55,4 +60,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+::-webkit-input-placeholder {
+  font-size: 11px;
+  overflow: auto;
 }
