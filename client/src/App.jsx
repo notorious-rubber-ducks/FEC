@@ -9,9 +9,11 @@ import Related from './components/related/Related.jsx';
 import ReviewsList from './components/ratings/ReviewsList.jsx';
 import AppContext from './hooks/context';
 import StarRatings from './components/sharedComponents/StarRatings.jsx';
+import UploadFile from './components/ratings/UploadFile.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
+  const [imageDirs, setImageDirs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   let id = '';
@@ -41,12 +43,16 @@ export default function App() {
   }
 
   return (
-    <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
+    <AppContext.Provider value={{
+      defaultItem, setDefaultItem, imageDirs, setImageDirs,
+    }}
+    >
       <div id="test">
-        <Overview />
-        <Related /> 
-        <Questions />
-        <Ratings /> 
+        {/* <Overview /> */}
+        {/* <Related />
+        <Questions /> */}
+        <ReviewsList id={defaultItem.id} />
+        <UploadFile />
       </div>
     </AppContext.Provider>
   );
