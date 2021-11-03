@@ -7,8 +7,6 @@ import AppContext from '../../hooks/context';
 import RelatedContext from '../../hooks/relatedContext';
 import RelatedModal from './RelatedModal.jsx';
 
-const imageStyle = { width: '200px', height: '200px', objectFit: 'cover' };
-
 export default function ProductCard({ product, setLocation }) {
   const [modalShown, setModalShown] = useState(false);
 
@@ -35,8 +33,8 @@ export default function ProductCard({ product, setLocation }) {
     );
   }
 
-  // pull in state from other components to take care of the
-  const { setDefaultItem } = useContext(AppContext);
+  // pull in state from other components to handle click
+  const { setDefaultItem, defaultItem } = useContext(AppContext);
   const { setProductId } = useContext(RelatedContext);
 
   function handleProductCardClick() {
@@ -55,31 +53,16 @@ export default function ProductCard({ product, setLocation }) {
       });
   }
 
+  // create function to handle a modal opening
   function handleButtonClick() {
-    console.log('modal should open');
     setModalShown(true);
   }
 
   return (
-    <div
-      className="product-card"
-      style={{
-        border: '2px solid #000',
-        width: '200px',
-        height: '300px',
-        margin: '8px',
-        borderRadius: '4px',
-        cursor: 'pointer',
-      }}
-    >
-      {modalShown ? <RelatedModal closeModal={setModalShown} /> : ''}
+    <div className="product-card">
+      {modalShown ? <RelatedModal currentItem={defaultItem} productCardItem={product} closeModal={setModalShown} /> : ''}
       <div
         className="product-card-image"
-        style={{
-          width: 'inherit',
-          height: '70%',
-          textAlign: 'center',
-        }}
         onClick={handleProductCardClick}
         onKeyPress={() => {}}
         role="button"
@@ -88,7 +71,6 @@ export default function ProductCard({ product, setLocation }) {
         <img
           src={defaultStyle.photos[0].url === null ? './assets/image-not-found.png' : defaultStyle.photos[0].thumbnail_url}
           alt={defaultStyle.name}
-          style={imageStyle}
         />
       </div>
       <div
@@ -100,29 +82,13 @@ export default function ProductCard({ product, setLocation }) {
       >
         {product.category.toUpperCase()}
         <br />
-        <span style={{ fontWeight: 'bold' }}>{product.name}</span>
+        <strong>{product.name}</strong>
         <br />
         {price}
         <br />
         <StarRatings id={product.id} />
       </div>
-      <button
-        type="button"
-        onClick={handleButtonClick}
-        style={{
-          fontSize: '20pt',
-          position: 'relative',
-          top: '-286px',
-          left: '150px',
-          width: '50px',
-          height: '50px',
-          margin: '0',
-          borderRadius: '25px',
-          border: '0',
-          color: '#fff',
-          backgroundColor: '#000',
-        }}
-      >
+      <button type="button" onClick={handleButtonClick}>
         &#9733;
       </button>
     </div>

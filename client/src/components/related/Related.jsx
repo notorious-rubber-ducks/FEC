@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../hooks/context';
@@ -58,7 +59,7 @@ function Related() {
 
   return (
     <RelatedContext.Provider value={{ setProductId }}>
-      <div>
+      <div id="related">
         <div id="related-products">
           <HorizontalCarousel items={related} />
         </div>
