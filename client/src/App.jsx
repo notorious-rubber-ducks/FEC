@@ -10,6 +10,8 @@ import ReviewsList from './components/ratings/ReviewsList.jsx';
 import AppContext from './hooks/context';
 import StarRatings from './components/sharedComponents/StarRatings.jsx';
 import UploadFile from './components/ratings/UploadFile.jsx';
+import MetaData from './components/shared/MetaData.jsx';
+
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
@@ -43,17 +45,18 @@ export default function App() {
   }
 
   return (
+
     <AppContext.Provider value={{
       defaultItem, setDefaultItem, imageDirs, setImageDirs,
-    }}
-    >
-      <div id="test">
-        {/* <Overview /> */}
-        {/* <Related />
-        <Questions /> */}
-        <ReviewsList id={defaultItem.id} />
-        <UploadFile />
-      </div>
+    }}>
+
+      <MetaData >
+        <Overview />
+        <Related />
+        <Questions />
+        <Ratings />
+      </MetaData>
+
     </AppContext.Provider>
   );
 }

@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import AppContext from "../../hooks/context";
 
 
 export default function QuestionModal ({ closeModal }) {
+
+  let currItem = useContext(AppContext).defaultItem;
 
   let [nickname, setNickname] = useState('');
   let [email, setEmail] = useState('');
@@ -26,8 +30,14 @@ export default function QuestionModal ({ closeModal }) {
       && email.includes('@')
       && email.includes('.')
       && question !== '') {
-        //submit form
         console.log('all fields are valid');
+        //submit form
+        axios.post('/qa/questions', {body: question, name: nickname, email, product_id: currItem.id})
+          .then(() => {
+            console.log('success');
+            closeModal(false);
+          })
+          .catch(err => console.error(err));
     } else {
       if (nickname === '') {
         fails.push('Nickname');

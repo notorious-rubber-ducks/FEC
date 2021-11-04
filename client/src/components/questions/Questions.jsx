@@ -4,20 +4,21 @@ import axios from 'axios';
 import SingleQuestion from './SingleQuestion.jsx';
 import QuestionModal from './AddQuestionModal.jsx';
 
-export default function Questions() {
+export default function Questions({ captureMetaData }) {
   let currItem = useContext(AppContext).defaultItem;
   //console.log(currItem);
   //
   let [questions, setQuestions] = useState([]);
   let [additional, setAdditional] = useState(false);
-  let [showBtn, setShowBtn] = useState(false);
   let [showModal, setShowModal] = useState(false);
 
   let showMore;
 
+
+
   useEffect( () => {
     setAdditional(false);
-    axios.get(`/qa/questions/?product_id=${currItem.id}&count=10`)
+    axios.get(`/qa/questions/?product_id=${currItem.id}&count=100`)
       .then(({ data }) => {
         //console.log(data);
         setQuestions(data.results);
@@ -39,7 +40,7 @@ export default function Questions() {
   }
 
   return (
-    <div>
+    <div id='questions' onClick={e => captureMetaData(e, 'questions')}>
       {showModal && <QuestionModal closeModal={setShowModal}/>}
       <h2>Questions {'&'} Answers</h2>
       <div className='scrollable' style={{border: '1px solid black', maxHeight: 600, overflowY:'scroll'}}>
