@@ -61,7 +61,6 @@ function Related() {
         temp = temp.concat(data);
         // filter out for unique outfits
         temp.filter((item, index, container) => container.indexOf(item) === index);
-        console.log(temp);
         setOutfits(temp);
       });
   }, []);
