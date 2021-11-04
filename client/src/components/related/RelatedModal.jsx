@@ -33,24 +33,23 @@ export default function RelatedModal({ closeModal, currentItem, productCardItem 
     ]);
 
   const nameLength = Math.max(currentItem.name.length, productCardItem.name.length);
-  console.log(nameLength);
 
   return (
     <div className="modalBackground" onKeyPress={() => {}} tabIndex={0} role="button" onClick={() => { closeModal(false); }}>
       <div className="modalContainer" style={{ height: `${1.25 * (allFeatures.length + 2)}em` }}>
         <div className="titleCloseBtn" />
         <div className="title">COMPARISON</div>
-        <div className="body" style={{ justifyContent: 'space-between' }}>
+        <div className="body" style={{ justifyContent: 'space-between', overflowY: 'scroll' }}>
           <span style={{ width: `${nameLength}ch` }}>
-            <strong>{currentItem.name}</strong>
+            <div><strong>{currentItem.name}</strong></div>
             {allFeatures.map((item) => item[0])}
           </span>
           <span>
-            <strong>{'\t'}</strong>
+            <div style={divStyle}>{'\t'}</div>
             {allFeatures.map((item) => item[1])}
           </span>
           <span style={{ width: `${nameLength}ch` }}>
-            <strong>{productCardItem.name}</strong>
+            <div><strong>{productCardItem.name}</strong></div>
             {allFeatures.map((item) => item[2])}
           </span>
         </div>

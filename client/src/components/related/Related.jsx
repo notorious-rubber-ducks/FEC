@@ -8,6 +8,7 @@ import HorizontalCarousel from './HorizontalCarousel.jsx';
 function Related() {
   // state for related item array
   const [related, setRelated] = useState([]);
+  const [outfits, setOutfits] = useState(['Add to Outfit']);
 
   const currentId = String(useContext(AppContext).defaultItem.id);
   // state for current productId
@@ -51,6 +52,20 @@ function Related() {
       .catch((err) => err);
   }
 
+  useEffect(() => {
+    // get any user outfit data from server
+    axios.get('/outfit')
+      .then(({ data }) => {
+        // copy current outfits
+        let temp = [...outfits];
+        temp = temp.concat(data);
+        // filter out for unique outfits
+        temp.filter((item, index, container) => container.indexOf(item) === index);
+        console.log(temp);
+        setOutfits(temp);
+      });
+  }, []);
+
   // when rendering component invoke the getRelated function with the productId state
   // also watch productId to re-render on it's change
   useEffect(() => {
@@ -58,14 +73,16 @@ function Related() {
   }, [productId]);
 
   return (
-    <RelatedContext.Provider value={{ setProductId }}>
+    <RelatedContext.Provider value={{ setProductId, outfits, setOutfits }}>
       <div id="related">
         <div id="related-products">
+          <h3 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h3>
           <HorizontalCarousel items={related} />
         </div>
-        {/* <div id="your-outfit">
-        hi
-      </div> */}
+        <div id="your-outfit">
+          <h3 style={{ marginLeft: '10px' }}>YOUR OUTFIT</h3>
+          <HorizontalCarousel items={outfits} />
+        </div>
       </div>
     </RelatedContext.Provider>
   );

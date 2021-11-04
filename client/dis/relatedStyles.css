@@ -5,7 +5,7 @@
   margin: auto
 }
 
-#carousel-inner {
+.carousel-inner {
   display: flex;
   overflow: hidden;
   white-space: nowrap;
@@ -59,4 +59,14 @@
   border: 0;
   color: #fff;
   background-color: #000;
+}
+
+.outfit-card {
+  border: 2px solid #000;
+  width: 200px;
+  min-width: 200px;
+  height: 300px;
+  margin: 8px;
+  border-radius: 4px;
+  cursor: pointer;
 }
