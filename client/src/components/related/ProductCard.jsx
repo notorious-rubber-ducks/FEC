@@ -19,30 +19,9 @@ export default function ProductCard({ product, setLocation, identifier }) {
       return;
     }
 
-    // generate promise array and pass into promise all
-    Promise.all([
-      axios.get(`/products/${defaultItem.id}`)
-        .then(({ data }) => data),
-      axios.get(`products/${defaultItem.id}/styles`)
-        .then(({ data }) => (data)),
-    ])
-      .then((values) => {
-        // combine the important information from both objects into one temp object
-        const temp = values[0];
-        temp.results = values[1].results;
+    setOutfits([...outfits, defaultItem]);
 
-        // change the state of outfits
-        const container = [...outfits];
-        container.push(temp);
-        setOutfits(container);
-        // return temp object to pass to development server
-        return temp;
-      })
-      .then((item) => {
-        // update the outfits on the server side
-        axios.post('/outfit', item)
-          .catch((err) => err);
-      })
+    axios.post('/outfit', defaultItem)
       .catch((err) => err);
   }
 
@@ -85,19 +64,24 @@ export default function ProductCard({ product, setLocation, identifier }) {
 
   function handleProductCardClick() {
     // change app level product id
-    axios
-      .get(`/products/${product.id}`)
-      .then(({ data }) => {
+    Promise.all([
+      axios.get(`/products/${product.id}`)
+        .then(({ data }) => data),
+      axios.get(`products/${product.id}/styles`)
+        .then(({ data }) => (data)),
+    ])
+      .then((values) => {
         // change the state of the horizontal carousel
         setLocation(0);
         // scroll all the way to the left
-        document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (220 * data.length);
+        document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= 220;
 
-        // set default item to be data on the app
-        setDefaultItem(data);
+        // set default item to be a combination of both API call results
+        setDefaultItem(Object.assign(values[0], values[1]));
         // set product id for related components to be the card's product.id
         setProductId(product.id);
-      });
+      })
+      .catch((err) => err);
   }
 
   function removeOutfit() {
