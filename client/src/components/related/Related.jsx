@@ -10,7 +10,7 @@ function Related() {
   const [related, setRelated] = useState([]);
   const [outfits, setOutfits] = useState(['Add to Outfit']);
 
-  const currentId = String(useContext(AppContext).defaultItem.id);
+  const currentId = useContext(AppContext).defaultItem.id;
   // state for current productId
   const [productId, setProductId] = useState(currentId);
 
@@ -20,7 +20,9 @@ function Related() {
     axios.get(`/products/${id}/related`)
       .then((response) => {
         // clean up related data coming in from API so related item array only has unique values
-        const relatedArray = response.data.filter((el, i, arr) => arr.indexOf(el) === i);
+        const relatedArray = response.data.filter(
+          (el, i, arr) => (arr.indexOf(el) === i && el !== currentId),
+        );
 
         // create an array of promises for style data
         const stylePromise = relatedArray.map((item) => axios.get(`/products/${item}/styles`)
@@ -53,15 +55,13 @@ function Related() {
   }
 
   useEffect(() => {
-    // get any user outfit data from server
-    axios.get('/outfit')
-      .then(({ data }) => {
-        // copy current outfits and filter out unique outfits
-        setOutfits(
-          outfits.concat(data)
-            .filter((item, index, container) => container.indexOf(item) === index),
-        );
-      });
+    // if there is no cache set on browser, then set starting cache
+    if (window.localStorage.getItem('userOutfits') === null) {
+      window.localStorage.setItem('userOutfits', JSON.stringify(outfits));
+    }
+
+    // // pull current browser cache and set state equal to it
+    setOutfits(JSON.parse(window.localStorage.getItem('userOutfits')));
   }, []);
 
   // when rendering component invoke the getRelated function with the productId state
@@ -71,7 +71,10 @@ function Related() {
   }, [productId]);
 
   return (
-    <RelatedContext.Provider value={{ setProductId, outfits, setOutfits }}>
+    <RelatedContext.Provider value={{
+      related, setProductId, outfits, setOutfits,
+    }}
+    >
       <div id="related">
         <div id="related-products">
           <h3 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h3>
