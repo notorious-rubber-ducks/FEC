@@ -19,25 +19,28 @@ export default function ProductCard({ product, setLocation, identifier }) {
       return;
     }
 
-    const stylePromise = [axios.get(`/products/${defaultItem.id}/styles`)
-      .then(({ data }) => (data))];
-
-    const normalPromise = [axios.get(`products/${defaultItem.id}`)
-      .then(({ data }) => (data))];
-
-    Promise.all(normalPromise.concat(stylePromise))
+    // generate promise array and pass into promise all
+    Promise.all([
+      axios.get(`/products/${defaultItem.id}`)
+        .then(({ data }) => data),
+      axios.get(`products/${defaultItem.id}/styles`)
+        .then(({ data }) => (data)),
+    ])
       .then((values) => {
+        // combine the important information from both objects into one temp object
         const temp = values[0];
         temp.results = values[1].results;
 
+        // change the state of outfits
         const container = [...outfits];
         container.push(temp);
         setOutfits(container);
+        // return temp object to pass to development server
         return temp;
       })
       .then((item) => {
+        // update the outfits on the server side
         axios.post('/outfit', item)
-          .then(() => {})
           .catch((err) => err);
       })
       .catch((err) => err);
@@ -47,14 +50,22 @@ export default function ProductCard({ product, setLocation, identifier }) {
   if (product === 'Add to Outfit') {
     const outfitCardStyle = {
       display: 'block',
-      height: '50%',
       fontSize: '1.75em',
-      margin: 'auto',
-      textAlign: 'center',
-      verticalAlign: 'middle',
     };
     return (
-      <div role="button" tabIndex={0} onKeyPress={() => {}} onClick={addNewOutfit} className="outfit-card">
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => {}}
+        onClick={addNewOutfit}
+        className="outfit-card"
+      >
         <div style={{ fontSize: '4em', ...outfitCardStyle }}>+</div>
         <div style={outfitCardStyle}>Add to Outfit</div>
       </div>
