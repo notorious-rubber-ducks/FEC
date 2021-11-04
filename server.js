@@ -16,52 +16,73 @@ axios.defaults.headers = {
   host: 'app-hrsei-api.herokuapp.com',
 };
 
+const outfitContainer = [];
+
 app.get('/*', (req, res) => {
-  // helper function just adds API key to headers
   console.log('GET req initiated');
-  const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
-  axios
-    .get(APIUrl)
-    .then(({ data }) => {
-      console.log(data);
-      res.send(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.end();
-    });
+
+  if (req.url === '/outfit') {
+    console.log(outfitContainer);
+    res.send(JSON.stringify(outfitContainer));
+  } else {
+    const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
+    axios
+      .get(APIUrl)
+      .then(({ data }) => {
+        console.log(data);
+        res.send(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.end();
+      });
+  }
 });
 
 app.post('/*', (req, res) => {
   console.log('POST initiated');
 
-  const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
+  if (req.url === '/outfit') {
+    outfitContainer.push(req.body);
+    console.log('outfit added to container');
+    res.send('outfit added to container');
+  } else {
+    const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
 
-  axios
-    .post(APIUrl, req.body)
-    .then(() => {
-      console.log('post successful');
-      res.end();
-    })
-    .catch((err) => {
-      console.log(req);
-      console.log(err);
-      res.end();
-    });
+    axios
+      .post(APIUrl, req.body)
+      .then(() => {
+        console.log('post successful');
+        res.end();
+      })
+      .catch((err) => {
+        console.log(req);
+        console.log(err);
+        res.end();
+      });
+  }
 });
 
 app.put('/*', (req, res) => {
-  const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
+  console.log('PUT initiated');
 
-  axios
-    .put(APIUrl, req.body)
-    .then(() => {
-      res.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      res.end();
-    });
+  if (req.url === '/outfit') {
+    const { index } = req.body;
+    outfitContainer.splice(index - 1, 1);
+    res.send('updated outfit list');
+  } else {
+    const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
+
+    axios
+      .put(APIUrl, req.body)
+      .then(() => {
+        res.end();
+      })
+      .catch((err) => {
+        console.log(err);
+        res.end();
+      });
+  }
 });
 
 app.listen(3000);

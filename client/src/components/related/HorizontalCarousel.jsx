@@ -1,32 +1,29 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard.jsx';
 
-const buttonStyle = {
-  margin: 'auto 10px',
-  cursor: 'pointer',
-  fontSize: '16pt',
-  borderRadius: '4px',
-  height: '100%',
-  userSelect: 'none',
-  backgroundColor: '#fff',
-  border: '0',
-};
-
 export default function HorizontalCarousel({ items }) {
+  useEffect(() => {}, [items]);
+
+  let identifier = '';
+
+  if (typeof items[0] === 'string') {
+    identifier = 'outfit';
+  }
+
   // define constants
-  const carouselHeight = 324;
   const cardWidth = 220;
 
   const [location, setLocation] = useState(0);
 
-  function handleClick(e) {
+  function handleScrollClick(e) {
     // scroll pictures in div and set location state depending on which button is clicked
     if (e.target.innerText === '<') {
-      document.getElementById('carousel-inner').scrollLeft -= (location === 0 ? 0 : cardWidth);
+      document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (location === 0 ? 0 : cardWidth);
       setLocation(location < 0 ? location : location - cardWidth);
     } else if (e.target.innerText === '>') {
-      document.getElementById('carousel-inner').scrollLeft += (
+      document.getElementById(`carousel-inner-${identifier}`).scrollLeft += (
         location > cardWidth * items.length ? 0 : cardWidth
       );
       setLocation(location > cardWidth * items.length ? location : location + cardWidth);
@@ -35,68 +32,58 @@ export default function HorizontalCarousel({ items }) {
 
   // empty button used to ensure carousel boundaries is maintained - dummy component
   const emptyButton = (
-    <button
-      type="button"
-      style={({ opacity: '0', color: '#fff', ...buttonStyle })}
-    >
-      _
+    <button type="button" className="carousel-button" style={({ opacity: '0' })}>
+      {'<'}
     </button>
   );
 
   return (
-  // Carousel
-    <div
-      id="carousel"
-      className="carousel"
-      style={{
-        display: 'flex',
-        width: '100%',
-        maxHeight: `${carouselHeight}px`,
-        margin: 'auto',
-      }}
-    >
+    // Carousel
+    <div id="carousel">
       {/* Back Button */}
-      {location < 5 ? emptyButton
+      {location <= 0 ? emptyButton
         : (
-          <button
-            id="related-carousel-button-previous"
-            onClick={handleClick}
-            type="button"
-            style={buttonStyle}
-          >
+          <button className="carousel-button" onClick={handleScrollClick} type="button">
             <span>{'<'}</span>
           </button>
         )}
 
       {/* Container */}
       <span
-        id="carousel-inner"
-        style={{
-          display: 'flex',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-        }}
+        className="carousel-inner"
+        id={`carousel-inner-${identifier}`}
       >
-        {items.map((item) => (
-          <ProductCard
-            setLocation={setLocation}
-            key={item.product_id}
-            product={item}
-          />
-        ))}
+        {// render product cards
+        items.map((item) => {
+          // need to define key and redefine if needed
+          // so there are unique keys
+          let key = item.id;
+
+          if (!key) {
+            key = 'add item';
+          } else if (typeof items[0] === 'string') {
+            key = `${key}-${identifier}`;
+          }
+
+          return (
+            <ProductCard
+              setLocation={setLocation}
+              key={key}
+              product={item}
+              identifier={identifier}
+            />
+          );
+        })
+}
       </span>
 
       {/* Forward Button */}
-      {(location + document.getElementById('app').clientWidth) >= (items.length * cardWidth + 40) ? emptyButton : (
-        <button
-          id="related-carousel-button-next"
-          onClick={handleClick}
-          type="button"
-          style={buttonStyle}
-        >
-          <span>{'>'}</span>
-        </button>
-      )}
+      {(location + document.getElementById('app').clientWidth) >= (items.length * cardWidth + 42.5 * 2) ? emptyButton
+        : (
+          <button className="carousel-button" onClick={handleScrollClick} type="button">
+            <span>{'>'}</span>
+          </button>
+        )}
     </div>
   );
 }
