@@ -3,6 +3,7 @@ import axios from "axios";
 import Answer from "./Answers.jsx";
 import Helpful from "../shared/Helpful.jsx";
 import AppContext from "../../hooks/context.js";
+import AnswerModal from "./AddAnswerModal.jsx";
 
 
 
@@ -15,6 +16,7 @@ export default function SingleQuestion ({q}) {
 
   let [answersElements, setAnswersElements] = useState([]);
   let [additional, setAdditional] = useState(false);
+  let [showModal, setShowModal] = useState(false);
 
   let showMore;
 
@@ -67,12 +69,13 @@ export default function SingleQuestion ({q}) {
 
   return (
     <div style={style}>
+      {showModal && <AnswerModal closeModal={setShowModal} question={q.question_id} />}
       <span>
         <span style={fontStyle}>
           Q: {q.question_body}
         </span>
-        <a style={{float:'right', textDecoration:'underline', color:'blue', fontSize:12}}>Add Answer</a>
-        <Helpful calledFrom='q' id={q.id} helpfulness={q.question_helpfulness}/>
+        <a style={{float:'right', textDecoration:'underline', color:'blue', fontSize:12}} onClick={() => setShowModal(true)}>Add Answer</a>
+        <Helpful calledFrom='q' id={q.question_id} helpfulness={q.question_helpfulness}/>
       </span>
       {answersElements}
       {showMore}

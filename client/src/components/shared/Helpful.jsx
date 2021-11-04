@@ -35,7 +35,6 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
   }
 
   let fontStyle = {
-    'float':'right',
     fontSize: 12
   }
 
@@ -51,14 +50,14 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
 
   if(calledFrom === 'q') {
     return (
-      <span style={fontStyle}>
-        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a> {'\u00A0'} {/* <- non-breaking space */}
+      <span style={fontStyle} className='qHelpful'>
+        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a> {' | '} <a style={reportLinkStyling} onClick={report}>{reported}</a>{' | \u00A0'} {/* <- non-breaking space */}
       </span>
     )
   } else {
     return (
       <span style={fontStyle}>
-        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a>{'\u00A0'} {/* <- non-breaking space */}
+        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a>{' | '} {/* <- non-breaking space */}
         <a onClick={report} style={reportLinkStyling}>{reported}</a>
       </span>
     )

@@ -9,6 +9,7 @@ import Related from './components/related/Related.jsx';
 import ReviewsList from './components/ratings/ReviewsList.jsx';
 import AppContext from './hooks/context';
 import StarRatings from './components/sharedComponents/StarRatings.jsx';
+import MetaData from './components/shared/MetaData.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
@@ -42,12 +43,12 @@ export default function App() {
 
   return (
     <AppContext.Provider value={{ defaultItem, setDefaultItem }}>
-      <div id="test">
+      <MetaData >
         <Overview />
-        <Related /> 
+        <Related />
         <Questions />
-        <Ratings /> 
-      </div>
+        <Ratings />
+      </MetaData>
     </AppContext.Provider>
   );
 }
