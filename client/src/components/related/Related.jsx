@@ -56,12 +56,11 @@ function Related() {
     // get any user outfit data from server
     axios.get('/outfit')
       .then(({ data }) => {
-        // copy current outfits
-        let temp = [...outfits];
-        temp = temp.concat(data);
-        // filter out for unique outfits
-        temp.filter((item, index, container) => container.indexOf(item) === index);
-        setOutfits(temp);
+        // copy current outfits and filter out unique outfits
+        setOutfits(
+          outfits.concat(data)
+            .filter((item, index, container) => container.indexOf(item) === index),
+        );
       });
   }, []);
 
