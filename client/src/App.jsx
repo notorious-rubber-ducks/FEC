@@ -57,7 +57,6 @@ export default function App() {
         <Questions key="questions" />
         <Ratings key="ratings" />
       </MetaData>
-
     </AppContext.Provider>
   );
 }
