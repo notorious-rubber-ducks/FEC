@@ -52,10 +52,10 @@ export default function App() {
     }}
     >
       <MetaData>
-        {/* <Overview key="overview" /> */}
+        <Overview key="overview" />
         <Related key="related" />
         <Questions key="questions" />
-        {/* <Ratings key="ratings" /> */}
+        <Ratings key="ratings" />
       </MetaData>
 
     </AppContext.Provider>
