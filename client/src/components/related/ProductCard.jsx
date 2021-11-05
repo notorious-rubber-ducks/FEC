@@ -10,19 +10,18 @@ import RelatedModal from './RelatedModal.jsx';
 export default function ProductCard({ product, setLocation, identifier }) {
 // pull in state from other components to handle click
   const { setDefaultItem, defaultItem } = useContext(AppContext);
-  const { outfits, setOutfits, setProductId } = useContext(RelatedContext);
+  const {
+    related, outfits, setOutfits, setProductId,
+  } = useContext(RelatedContext);
 
-  // the axios call and promises can be moved to the app level
   function addNewOutfit() {
     // prevent adding the same item to the outfit list
     if (outfits.slice(1).find((item) => item.id === defaultItem.id) !== undefined) {
       return;
     }
-
+    // set state and store it in browser cache
     setOutfits([...outfits, defaultItem]);
-
-    axios.post('/outfit', defaultItem)
-      .catch((err) => err);
+    window.localStorage.setItem('userOutfits', JSON.stringify([...outfits, defaultItem]));
   }
 
   // if product is empty then return a rendering card
@@ -74,7 +73,7 @@ export default function ProductCard({ product, setLocation, identifier }) {
         // change the state of the horizontal carousel
         setLocation(0);
         // scroll all the way to the left
-        document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= 220;
+        document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (220 * related.length);
 
         // set default item to be a combination of both API call results
         setDefaultItem(Object.assign(values[0], values[1]));
@@ -86,19 +85,16 @@ export default function ProductCard({ product, setLocation, identifier }) {
 
   function removeOutfit() {
     const index = outfits.indexOf(outfits.find((item) => item.id === product.id));
+
     const temp = [...outfits];
+    temp.splice(index, 1);
 
-    axios.put('/outfit', { index })
-      .then(() => {
-        // change the state of the horizontal carousel
-        setLocation(0);
-        // scroll all the way to the left
-        document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (220 * outfits.length);
+    setOutfits(temp);
+    window.localStorage.setItem('userOutfits', JSON.stringify(temp));
 
-        temp.splice(index, 1);
-        setOutfits(temp);
-      })
-      .catch((err) => err);
+    // change the state of the horizontal carousel
+    setLocation(0);
+    document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (220 * outfits.length);
   }
 
   // create function to handle a modal opening
@@ -144,7 +140,7 @@ export default function ProductCard({ product, setLocation, identifier }) {
       {modalShown ? <RelatedModal currentItem={defaultItem} productCardItem={product} closeModal={setModalShown} /> : ''}
       <div
         className="product-card-image"
-        onClick={identifier === 'outfit' ? () => {} : handleProductCardClick}
+        onClick={handleProductCardClick}
         onKeyPress={() => {}}
         role="button"
         tabIndex={0}
@@ -156,7 +152,7 @@ export default function ProductCard({ product, setLocation, identifier }) {
       </div>
       <div
         className="product-card-text"
-        onClick={identifier === 'outfit' ? () => {} : handleProductCardClick}
+        onClick={handleProductCardClick}
         onKeyPress={() => {}}
         role="button"
         tabIndex={0}
