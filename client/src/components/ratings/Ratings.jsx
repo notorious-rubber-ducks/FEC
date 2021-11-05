@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import MetaDataComponent from './MetaDataComponent.jsx';
+import AppContext from '../../hooks/context.js';
 
-const Ratings = ({ id }) => {
+const Ratings = () => {
+  const context = useContext(AppContext).defaultItem;
   const [reviewData, setReviewData] = useState();
   const [metaData, setMetaData] = useState();
   const [firstTwo, setFirstTwo] = useState();
@@ -12,10 +14,10 @@ const Ratings = ({ id }) => {
   useEffect(() => {
     Promise.all([
       axios
-        .get(`/reviews?product_id=${id}`)
+        .get(`/reviews?product_id=${context.id}`)
         .then(({ data }) => data),
       axios
-        .get(`/reviews/meta?product_id=${id}`)
+        .get(`/reviews/meta?product_id=${context.id}`)
         .then(({ data }) => data),
     ])
       .then((data) => {

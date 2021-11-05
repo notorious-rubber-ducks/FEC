@@ -9,7 +9,6 @@ import Related from './components/related/Related.jsx';
 import ReviewsList from './components/ratings/ReviewsList.jsx';
 import AppContext from './hooks/context';
 import StarRatings from './components/sharedComponents/StarRatings.jsx';
-import UploadFile from './components/ratings/UploadFile.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
@@ -49,10 +48,11 @@ export default function App() {
     >
       <div id="test">
         {/* <Overview /> */}
-        {/* <Related />
-        <Questions /> */}
-        <ReviewsList id={defaultItem.id} />
-        <UploadFile />
+        <Related />
+        <Questions />
+
+        <Ratings />
+
       </div>
     </AppContext.Provider>
   );
