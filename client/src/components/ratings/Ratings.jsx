@@ -30,6 +30,7 @@ const Ratings = () => {
   }, []);
 
   return (
+
     <div>
       <ReviewsList
         reviewDataProps={reviewData}
@@ -39,6 +40,7 @@ const Ratings = () => {
       />
       <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
     </div>
+
   );
 };
 

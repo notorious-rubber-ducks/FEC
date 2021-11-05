@@ -17,8 +17,8 @@ axios.defaults.headers = {
 };
 
 app.get('/*', (req, res) => {
-  // helper function just adds API key to headers
   console.log('GET req initiated');
+
   const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
   axios
     .get(APIUrl)
@@ -51,6 +51,8 @@ app.post('/*', (req, res) => {
 });
 
 app.put('/*', (req, res) => {
+  console.log('PUT initiated');
+
   const APIUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den${req.url}`;
 
   axios
