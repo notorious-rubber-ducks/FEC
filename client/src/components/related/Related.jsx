@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
@@ -5,7 +6,7 @@ import AppContext from '../../hooks/context';
 import RelatedContext from '../../hooks/relatedContext';
 import HorizontalCarousel from './HorizontalCarousel.jsx';
 
-function Related() {
+function Related({ captureMetaData }) {
   // state for related item array
   const [related, setRelated] = useState([]);
   const [outfits, setOutfits] = useState(['Add to Outfit']);
@@ -75,7 +76,7 @@ function Related() {
       related, setProductId, outfits, setOutfits,
     }}
     >
-      <div id="related">
+      <div id="related" onKeyPress={() => {}} onClick={(e) => captureMetaData(e, 'related')}>
         <div id="related-products">
           <h3 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h3>
           <HorizontalCarousel items={related} />

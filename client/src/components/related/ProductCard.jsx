@@ -14,6 +14,16 @@ export default function ProductCard({ product, setLocation, identifier }) {
     related, outfits, setOutfits, setProductId,
   } = useContext(RelatedContext);
 
+  function addNewOutfit() {
+    // prevent adding the same item to the outfit list
+    if (outfits.slice(1).find((item) => item.id === defaultItem.id) !== undefined) {
+      return;
+    }
+    // set state and store it in browser cache
+    setOutfits([...outfits, defaultItem]);
+    window.localStorage.setItem('userOutfits', JSON.stringify([...outfits, defaultItem]));
+  }
+
   // if product is empty then return a rendering card
   if (product === 'Add to Outfit') {
     const outfitCardStyle = {
@@ -71,16 +81,6 @@ export default function ProductCard({ product, setLocation, identifier }) {
         setProductId(product.id);
       })
       .catch((err) => err);
-  }
-
-  function addNewOutfit() {
-    // prevent adding the same item to the outfit list
-    if (outfits.slice(1).find((item) => item.id === defaultItem.id) !== undefined) {
-      return;
-    }
-    // set state and store it in browser cache
-    setOutfits([...outfits, defaultItem]);
-    window.localStorage.setItem('userOutfits', JSON.stringify([...outfits, defaultItem]));
   }
 
   function removeOutfit() {

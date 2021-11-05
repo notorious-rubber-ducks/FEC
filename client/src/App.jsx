@@ -51,12 +51,11 @@ export default function App() {
       defaultItem, setDefaultItem, imageDirs, setImageDirs,
     }}
     >
-
       <MetaData>
-        <Overview />
-        <Related />
-        <Questions />
-        <Ratings />
+        {/* <Overview key="overview" /> */}
+        <Related key="related" />
+        <Questions key="questions" />
+        {/* <Ratings key="ratings" /> */}
       </MetaData>
 
     </AppContext.Provider>

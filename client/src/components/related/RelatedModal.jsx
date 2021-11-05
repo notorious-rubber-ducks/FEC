@@ -11,16 +11,16 @@ export default function RelatedModal({ closeModal, currentItem, productCardItem 
 
   const createCheckMarkDiv = (index, char) => {
     const key = `${index}-${char}`;
-    return (<div style={divStyle} key={key}>&#x2714;</div>);
+    return (<div className="comparison-modal-line" data-testid="comparison-modal-line" style={divStyle} key={key}>&#x2714;</div>);
   };
   const createEmptyDiv = (index, char) => {
     const key = `${index}-${char}`;
     const empty = '\t';
-    return (<div style={divStyle} key={key}>{empty}</div>);
+    return (<div className="comparison-modal-line" data-testid="comparison-modal-line" style={divStyle} key={key}>{empty}</div>);
   };
   const createCenterDiv = (element, index, char) => {
     const key = `${index}-${char}`;
-    return (<div style={divStyle} key={key}>{element}</div>);
+    return (<div className="comparison-modal-line" data-testid="comparison-modal-line" style={divStyle} key={key}>{element}</div>);
   };
 
   // combine features, fileter out for unique features and then create a 3 column array that
