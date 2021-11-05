@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Helpful from "../shared/Helpful.jsx";
+import ImageModal from "../shared/ImageModal.jsx";
 
 export default function Answer({id}) {
-  console.log(id.date)
+
+  let [showModal, setShowModal] = useState(false);
+  let [imgModalInstance, setImgModalInstance] = useState();
+
   let date = id.date.replace('T00:00:00.000Z', '');
   let splitDate = date.split('-');
   let [year, month, day] = splitDate;
@@ -51,9 +55,23 @@ export default function Answer({id}) {
 
   date = `${month}, ${day} ${year}`;
 
+  ;
+
+  const imgModal = function (src) {
+    setImgModalInstance((<ImageModal closeModal={setShowModal} image={src}/>))
+    setShowModal(true);
+  }
+
   let answerStyle = {
     border: '1px solid black',
     borderRadius: '3px'
+  }
+
+  let imageStyle = {
+    width: 50,
+    height: 50,
+    objectFit: 'cover',
+    border: '1px solid black'
   }
 
   let answerFontStyle = {
@@ -63,18 +81,23 @@ export default function Answer({id}) {
 
   return (
     <div style={answerStyle}>
+      {showModal && imgModalInstance}
       <span style={answerFontStyle}>
         A: {id.body}
       </span>
+      {id.photos.length ? (<br />) : null}
+      <span>
+        {id.photos.length ? id.photos.map(img => (<span><img src={img} style={imageStyle} onClick={() => imgModal(img)}/> {'\u00A0'}</span>)) : null}
+      </span>
       <br/>
       <span style={{fontSize:11}}>
-        by {id.answerer_name}, {date} {'\u00A0'} {/* <- non-breaking space */}
+        by {id.answerer_name === 'Seller' ? (<b>{id.answerer_name}</b>) : id.answerer_name}, {date} {'\u00A0'} {/* <- non-breaking space */}
       </span>
       <Helpful
         helpfulness={id.helpfulness}
         calledFrom='a'
         id={id.id}
-      />
+        />
     </div>
   )
 };
