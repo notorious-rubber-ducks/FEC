@@ -1,15 +1,22 @@
-import React from "react";
+/* eslint-disable func-names */
+/* eslint-disable react/prop-types */
+import axios from 'axios';
+import React from 'react';
 
-export default function MetaData (props) {
+export default function MetaData({ children }) {
   const captureMetaData = function (e, target) {
-    console.log(e.target)
-    console.log(target)
-
-  }
+    axios.post('/interactions', {
+      element: e.target.localName,
+      widget: target,
+      time: new Date(),
+    })
+      .then((response) => { console.log(response); })
+      .catch((err) => err);
+  };
 
   return (
     <div>
-      {props.children.map(child => React.cloneElement(child, {captureMetaData}))}
+      {children.map((child) => React.cloneElement(child, { captureMetaData }))}
     </div>
   );
 }
