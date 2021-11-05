@@ -14,21 +14,22 @@ export default function SingleQuestion ({q}) {
   let firstTwo = [answerIds[0], answerIds[1]];
 
 
-  let [answersElements, setAnswersElements] = useState([]);
+  let [allAnswersElements, setAllAnswersElements] = useState([]);
+  let [firstTwoElements, setFirstTwoElements] = useState([]);
   let [additional, setAdditional] = useState(false);
   let [showModal, setShowModal] = useState(false);
 
-  let showMore;
-
   const showOnClick = function () {
     setAdditional(true);
-    setAnswersElements(answerIds.map(a => {
-      if (a !== undefined) {
-        return (<div key={q.answers[a].id}><Answer id={q.answers[a]}/></div>)
-      }
-    }));
-    showMore = (<div></div>);
   };
+
+  const hideOnClick = function () {
+    console.log('hide was clicked')
+    setAdditional(false);
+  };
+
+  let showMore;
+  let collapse = (<div><button onClick={hideOnClick}>Collapse Answers</button></div>);
 
   if (answerIds.length > 2 && !additional) {
     showMore = (<div><button onClick={showOnClick}>See More Answers</button></div>)
@@ -36,25 +37,21 @@ export default function SingleQuestion ({q}) {
     showMore = (<div></div>)
   }
 
-  // if (!answersElements.length) {
-  //   setAnswersElements(firstTwo.map(a => {
-  //     console.log('answer generated');
-  //     if (a !== undefined) {
-  //       return (<div key={q.answers[a].id}><Answer id={q.answers[a]}/></div>)
-  //     }
-  //   }));
-  // }
 
   useEffect(() => {
     answerIds = Object.keys(q.answers);
     firstTwo = [answerIds[0], answerIds[1]];
-    setAnswersElements(firstTwo.map(a => {
+    setFirstTwoElements(firstTwo.map(a => {
+      if (a !== undefined) {
+        return (<div key={q.answers[a].id}><Answer id={q.answers[a]}/></div>)
+      }
+    }));
+    setAllAnswersElements(answerIds.map(a => {
       if (a !== undefined) {
         return (<div key={q.answers[a].id}><Answer id={q.answers[a]}/></div>)
       }
     }));
   }, [currItem]);
-  //console.log(answersElements);
 
   let style = {
     border: '2px solid black',
@@ -77,12 +74,8 @@ export default function SingleQuestion ({q}) {
         <a style={{float:'right', textDecoration:'underline', color:'blue', fontSize:12}} onClick={() => setShowModal(true)}>Add Answer</a>
         <Helpful calledFrom='q' id={q.question_id} helpfulness={q.question_helpfulness}/>
       </span>
-      {answersElements}
-      {showMore}
+      {additional ? allAnswersElements : firstTwoElements}
+      {additional ? collapse : showMore}
     </div>
   );
 }
-
-
-//console.log('question object', q);
-

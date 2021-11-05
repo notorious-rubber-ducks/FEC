@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import AppContext from "../../hooks/context";
-
+import UploadFile from '../sharedComponents/UploadFile.jsx';
 
 export default function AnswerModal ({ closeModal, question }) {
 
@@ -81,7 +81,7 @@ export default function AnswerModal ({ closeModal, question }) {
             <br/>
             <textarea maxLength='1000' style={{width:400}} onChange={e => setBody(e.target.value)}></textarea>
             <br/>
-            <div>Placeholder for image upload</div>
+            <UploadFile />
             {failed && <FailedDOM />}
           </form>
           <br/>

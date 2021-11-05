@@ -22,7 +22,7 @@ body {
   border: 1px solid black;
   color: white;
   margin: auto;
-  z-index: 999;
+  z-index: 998;
 }
 
 #app {
@@ -39,10 +39,17 @@ body {
 
 #questions {
   padding: 3px;
+  max-height: 500px;
 }
 
 #questions div {
   padding: 5px;
+}
+
+#questions .qSearch {
+  width: 99%;
+  height: 35px;
+  margin: auto;
 }
 
 .qHelpful {
@@ -60,7 +67,17 @@ button {
   background-color: #d6daf0;
   cursor: pointer;
 }
-
+button:disabled {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid rgba(231, 59, 59, 0.4);
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2px;
+  text-align: center;
+  color: #2f2ba5;
+  background-color: #a2a3aa;
+  cursor: default;
+}
 a {
   cursor: pointer;
 }
