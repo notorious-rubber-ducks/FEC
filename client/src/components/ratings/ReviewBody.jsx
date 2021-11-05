@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import UploadFile from './UploadFile.jsx';
+import UploadFile from '../sharedComponents/UploadFile.jsx';
 
 const ReviewBody = ({ props }) => {
   const [data, setData] = useState();
@@ -20,7 +20,6 @@ const ReviewBody = ({ props }) => {
 
   return (
     <div>
-      <UploadFile />
       <div className="Summary" style={{ fontWeight: 'bold' }}>
         {summary}
       </div>
