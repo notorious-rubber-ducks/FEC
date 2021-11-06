@@ -33,21 +33,19 @@ function Related({ captureMetaData }) {
         const normalPromise = relatedArray.map((product) => axios.get(`/products/${product}`)
           .then(({ data }) => data));
 
-        // return combined promise array which should be in order
-        return stylePromise.concat(normalPromise);
-      })
-      .then((promiseArray) => {
         // use promise all on the array of promises so that when resolved the results
         // can be passed into the relatedItems state
-        Promise.all(promiseArray)
+        const promises = [stylePromise, normalPromise];
+        Promise.all(promises.map((item) => Promise.all(item)))
           .then((values) => {
+            // create array for related items
             const relatedItems = [];
 
-            for (let i = 0; i < values.length / 2; i += 1) {
-              // into related items array push an object which combines
-              // the response from styles with the response from the normal product info call
-              relatedItems.push({ ...values[i], ...values[i + (values.length / 2)] });
-            }
+            values[0].forEach((item, index) => {
+              // into related items
+              relatedItems.push({ ...item, ...values[1][index] });
+            });
+
             setRelated(relatedItems);
           })
           .catch((err) => err);
@@ -76,7 +74,7 @@ function Related({ captureMetaData }) {
       related, setProductId, outfits, setOutfits,
     }}
     >
-      <div id="related" onKeyPress={() => {}} onClick={(e) => captureMetaData(e, 'related')}>
+      <div id="related" role="button" tabIndex={0} onKeyPress={() => {}} onClick={(e) => captureMetaData(e, 'related')}>
         <div id="related-products">
           <h3 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h3>
           <HorizontalCarousel items={related} />
