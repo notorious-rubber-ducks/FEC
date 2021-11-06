@@ -13,6 +13,7 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
 
   let [helpful, setHelpful] = useState(helpfulness);
   let [reported, setReported] = useState('Report');
+  let [voted, setVoted] = useState(false);
 
   if (reported === 'Report') {
     reportLinkStyling = {
@@ -39,16 +40,23 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
   }
 
   function isHelpful() {
-    setHelpful(helpfulness + 1);
-    axios.put(`${apiEndPoint}/helpful`);
+    if (!voted) {
+      console.log('should only see this once');
+      setHelpful(helpfulness + 1);
+      setVoted(true);
+      axios.put(`${apiEndPoint}/helpful`);
+    }
   }
 
   function report() {
-    setReported('Reported');
-    axios.put(`${apiEndPoint}/report`);
+    if (reported === 'Report') {
+      console.log('should only see this once');
+      setReported('Reported');
+      axios.put(`${apiEndPoint}/report`);
+    }
   }
 
-  if(calledFrom === 'q') {
+  if (calledFrom === 'q') {
     return (
       <span style={fontStyle} className='qHelpful'>
         Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a> {' | '} <a style={reportLinkStyling} onClick={report}>{reported}</a>{' | \u00A0'} {/* <- non-breaking space */}
