@@ -10,9 +10,12 @@ export default function Overview() {
 
 
   return (
-    <div>
-      <LeftPanel />
-      <RightPanel />
+    <div id="overview">
+      <h2 className='overview-title'>Overview</h2>
+      <div className='flexContainer'>
+        <LeftPanel />
+        <RightPanel />
+      </div>
     </div>
   );
 }
