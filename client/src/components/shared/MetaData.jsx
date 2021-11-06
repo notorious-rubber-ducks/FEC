@@ -10,7 +10,6 @@ export default function MetaData({ children }) {
       widget: target,
       time: new Date(),
     })
-      .then((response) => { console.log(response); })
       .catch((err) => err);
   };
 
