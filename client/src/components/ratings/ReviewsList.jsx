@@ -35,13 +35,14 @@ const ReviewsList = ({
   return (
 
     <div>
-      <button type="submit" onClick={openReviewModal}>Add Review </button>
+
       {reviewModal ? <AddReview props={reviewModal} data={metaData} /> : null}
       {renderList ? renderList.map((review) => <ReviewBody props={review} />)
         : null}
 
       {renderList ? renderReview() : null}
       {listSize > 2 ? <button type="submit" onClick={handleClick}>Show More</button> : null }
+      <button type="submit" onClick={openReviewModal}>Add Review </button>
     </div>
 
   );

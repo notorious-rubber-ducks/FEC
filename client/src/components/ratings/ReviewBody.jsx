@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import UploadFile from '../sharedComponents/UploadFile.jsx';
+import StarRatings from '../sharedComponents/StarRatings.jsx';
+import AppContext from '../../hooks/context.js';
 
 const ReviewBody = ({ props }) => {
+  const context = useContext(AppContext).defaultItem;
   const [data, setData] = useState();
   const [bodyLength, setBodyLength] = useState();
   const [body, setBody] = useState();
@@ -20,10 +23,16 @@ const ReviewBody = ({ props }) => {
 
   return (
     <div>
-      <div className="Summary" style={{ fontWeight: 'bold' }}>
+      <StarRatings id={context.id} />
+      <div
+        className="Summary"
+        style={{
+          fontWeight: 'bold', paddingBottom: '1%', paddingTop: '1%', fontSize: '22px',
+        }}
+      >
         {summary}
       </div>
-      <div className="Body">
+      <div className="Body" style={{ paddingBottom: '1%', paddingTop: '1%', borderBottom: '1px solid' }}>
         {body}
         {bodyLength > 250 ? <button type="submit" onClick={handleClick}>Show Full Review</button> : null}
       </div>

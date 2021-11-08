@@ -55,6 +55,7 @@
   align-items: center;
   font-size: 14px;
   text-align: center;
+  width: fit-content;
 }
 .modalContainer .body img {
   z-index: 900;
@@ -72,4 +73,13 @@
 ::-webkit-input-placeholder {
   font-size: 11px;
   overflow: auto;
+}
+
+.scroller {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
 }
