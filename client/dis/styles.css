@@ -79,14 +79,12 @@ body {
   min-height: 100px;
   width: 60%;
   padding: 10px;
-  margin: auto;
 }
 
 #overview .rightPanel {
   min-height: 100px;
   width: 40%;
   padding: 10px;
-  margin: auto;
 }
 
 #overview .styleSelector {
