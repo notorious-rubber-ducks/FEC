@@ -53,9 +53,9 @@ export default function Selector() {
         <h4>
           <strong>Style &lt;</strong>SELECTED STYLE
         </h4>
-        {productName.map((img) => (
+        {/* {productName.map((img) => (
           <img src={img.url} style={miniSelector} alt="Clothing Img" />
-        ))}
+        ))} */}
       </div>
       <div>
         {/* ask how to access skus better to team */}

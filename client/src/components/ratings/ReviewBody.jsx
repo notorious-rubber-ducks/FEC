@@ -20,10 +20,10 @@ const ReviewBody = ({ props }) => {
 
   return (
     <div>
-      <div className="Summary" style={{ fontWeight: 'bold' }}>
+      <div className="Summary" style={{ fontWeight: 'bold', paddingBottom: '1%', paddingTop: '1%' }}>
         {summary}
       </div>
-      <div className="Body">
+      <div className="Body" style={{ paddingBottom: '1%', paddingTop: '1%', borderBottom: '1px solid' }}>
         {body}
         {bodyLength > 250 ? <button type="submit" onClick={handleClick}>Show Full Review</button> : null}
       </div>

@@ -4,7 +4,7 @@ import ReviewsList from './ReviewsList.jsx';
 import MetaDataComponent from './MetaDataComponent.jsx';
 import AppContext from '../../hooks/context.js';
 
-const Ratings = () => {
+const Ratings = ({ captureMetaData }) => {
   const context = useContext(AppContext).defaultItem;
   const [reviewData, setReviewData] = useState();
   const [metaData, setMetaData] = useState();
@@ -30,15 +30,26 @@ const Ratings = () => {
   }, []);
 
   return (
+    <div id="ratings" onKeyPress={() => {}} onClick={(e) => { captureMetaData(e, 'ratings'); }} style={{ marginTop: '50px', paddingTop: '20px', borderTop: '2px solid' }}>
+      <div style={{
+        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', marginBottom: '5%',
+      }}
+      >
 
-    <div>
-      <ReviewsList
-        reviewDataProps={reviewData}
-        metaDataProps={metaData}
-        size={size}
-        firstTwo={firstTwo}
-      />
-      <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
+        <div style={{ flexBasis: '40%', marginLeft: '5%', flex: '1' }}>
+          <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
+        </div>
+
+        <div style={{ flex: '1' }}>
+          <ReviewsList
+            reviewDataProps={reviewData}
+            metaDataProps={metaData}
+            size={size}
+            firstTwo={firstTwo}
+          />
+        </div>
+
+      </div>
     </div>
 
   );
