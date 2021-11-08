@@ -69,7 +69,10 @@ export default function HorizontalCarousel({ items }) {
             <ProductCard
               setLocation={setLocation}
               key={key}
-              product={item}
+              product={key === 'add item' ? {
+                category: 'Add to Outfit',
+                results: [{}],
+              } : item}
               identifier={identifier}
             />
           );

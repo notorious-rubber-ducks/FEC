@@ -4,7 +4,12 @@ import React from 'react';
 const divStyle = { height: '1em', margin: '2px' };
 
 export default function RelatedModal({ closeModal, currentItem, productCardItem }) {
-  const combineFeatures = (element) => `${element.feature}: ${element.value}`;
+  const combineFeatures = (element) => {
+    if (!element.value) {
+      return `${element.feature}`;
+    }
+    return `${element.feature}: ${element.value}`;
+  };
 
   const currentFeatures = currentItem.features.map((item) => combineFeatures(item));
   const PCItem = productCardItem.features.map((item) => combineFeatures(item));
@@ -15,8 +20,7 @@ export default function RelatedModal({ closeModal, currentItem, productCardItem 
   };
   const createEmptyDiv = (index, char) => {
     const key = `${index}-${char}`;
-    const empty = '\t';
-    return (<div className="comparison-modal-line" data-testid="comparison-modal-line" style={divStyle} key={key}>{empty}</div>);
+    return (<div className="comparison-modal-line" data-testid="comparison-modal-line" style={divStyle} key={key}>{'\t'}</div>);
   };
   const createCenterDiv = (element, index, char) => {
     const key = `${index}-${char}`;

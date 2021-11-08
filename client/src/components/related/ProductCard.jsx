@@ -13,42 +13,7 @@ export default function ProductCard({ product, setLocation, identifier }) {
   const {
     related, outfits, setOutfits, setProductId,
   } = useContext(RelatedContext);
-
-  function addNewOutfit() {
-    // prevent adding the same item to the outfit list
-    if (outfits.slice(1).find((item) => item.id === defaultItem.id) !== undefined) {
-      return;
-    }
-    // set state and store it in browser cache
-    setOutfits([...outfits, defaultItem]);
-    window.localStorage.setItem('userOutfits', JSON.stringify([...outfits, defaultItem]));
-  }
-
-  // if product is empty then return a rendering card
-  if (product === 'Add to Outfit') {
-    const outfitCardStyle = {
-      display: 'block',
-      fontSize: '1.75em',
-    };
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        role="button"
-        tabIndex={0}
-        onKeyPress={() => {}}
-        onClick={addNewOutfit}
-        className="outfit-card"
-      >
-        <div style={{ fontSize: '4em', ...outfitCardStyle }}>+</div>
-        <div style={outfitCardStyle}>Add to Outfit</div>
-      </div>
-    );
-  }
+  const [modalShown, setModalShown] = useState(false);
 
   /* define a default style based on the default? property of the results object */
   let defaultStyle = product.results.filter((item) => item['default?'] === true)[0];
@@ -56,8 +21,6 @@ export default function ProductCard({ product, setLocation, identifier }) {
   if (defaultStyle === undefined) {
     [defaultStyle] = product.results;
   }
-
-  const [modalShown, setModalShown] = useState(false);
 
   /* Event Handlers */
 
@@ -83,6 +46,16 @@ export default function ProductCard({ product, setLocation, identifier }) {
       .catch((err) => err);
   }
 
+  function addNewOutfit() {
+    // prevent adding the same item to the outfit list
+    if (outfits.slice(1).find((item) => item.id === defaultItem.id) !== undefined) {
+      return;
+    }
+    // set state and store it in browser cache
+    setOutfits([...outfits, defaultItem]);
+    window.localStorage.setItem('userOutfits', JSON.stringify([...outfits, defaultItem]));
+  }
+
   function removeOutfit() {
     const index = outfits.indexOf(outfits.find((item) => item.id === product.id));
 
@@ -105,14 +78,14 @@ export default function ProductCard({ product, setLocation, identifier }) {
   /* Conditional Rendering Variables */
 
   let cardButton = (
-    <button type="button" onClick={handleButtonClick}>
-      &#9733;
+    <button type="button" className={`${identifier}-pc-button`} onClick={handleButtonClick}>
+      &#9734;
     </button>
   );
 
   if (identifier === 'outfit') {
     cardButton = (
-      <button type="button" onClick={removeOutfit}>
+      <button className={`${identifier}-pc-button`} type="button" onClick={removeOutfit}>
         X
       </button>
     );
@@ -138,34 +111,52 @@ export default function ProductCard({ product, setLocation, identifier }) {
   return (
     <div className="product-card">
       {modalShown ? <RelatedModal currentItem={defaultItem} productCardItem={product} closeModal={setModalShown} /> : ''}
-      <div
-        className="product-card-image"
-        onClick={handleProductCardClick}
-        onKeyPress={() => {}}
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src={defaultStyle.photos[0].url === null ? './assets/image-not-found.png' : defaultStyle.photos[0].thumbnail_url}
-          alt={defaultStyle.name}
-        />
-      </div>
+      {!product.id ? (
+        <div
+          style={{
+            height: '50%',
+            fontSize: '6em',
+            textAlign: 'center',
+            marginTop: '60px',
+          }}
+          onClick={addNewOutfit}
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex={0}
+        >
+          +
+        </div>
+      ) : (
+        <div
+          className="product-card-image"
+          onClick={handleProductCardClick}
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex={0}
+        >
+          <img
+            src={defaultStyle.photos[0].thumbnail_url === null ? './assets/image-not-found.png' : defaultStyle.photos[0].thumbnail_url}
+            alt={defaultStyle.name}
+          />
+        </div>
+      )}
       <div
         className="product-card-text"
-        onClick={handleProductCardClick}
+        onClick={!product.id ? addNewOutfit : handleProductCardClick}
         onKeyPress={() => {}}
         role="button"
         tabIndex={0}
+        style={!product.id ? { textAlign: 'center', fontSize: '1.5em', margin: 0 } : {}}
       >
         {product.category.toUpperCase()}
         <br />
         <strong>{product.name}</strong>
         <br />
-        {price}
+        {!product.id ? '' : price}
         <br />
-        <StarRatings id={product.id} />
+        {!product.id ? '' : <StarRatings id={product.id} />}
       </div>
-      {cardButton}
+      {!product.id ? '' : cardButton}
     </div>
   );
 }
