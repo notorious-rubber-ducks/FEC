@@ -37,7 +37,6 @@ body {
 #app {
   background-color: #d9bfb7;
   background-position: bottom;
-  padding-top: 5%;
   width: 100%;
   height: auto;
   margin: auto;
@@ -67,7 +66,7 @@ body {
 
 #overview {
   width: 100%;
-  min-height: 200px;
+  padding: 5px;
 }
 
 #overview .flexContainer {
