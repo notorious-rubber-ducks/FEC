@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 /* eslint-disable react/prop-types */
 import axios from 'axios';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export default function MetaData({ children }) {
   const captureMetaData = function (e, target) {
@@ -14,8 +14,8 @@ export default function MetaData({ children }) {
   };
 
   return (
-    <div>
+    <>
       {children.map((child) => React.cloneElement(child, { captureMetaData }))}
-    </div>
+    </>
   );
 }
