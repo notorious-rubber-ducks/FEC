@@ -89,6 +89,19 @@ body {
   margin: auto;
 }
 
+#overview .styleSelector {
+  border: 1px solid black;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50px;
+  margin: auto;
+}
+
+#overview .styleSelector:hover {
+  border: 2px solid blue;
+}
+
 .overview-title {
   padding: 10px;
 }

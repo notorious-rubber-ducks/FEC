@@ -10,14 +10,18 @@ import RightPanel from './RightPanel.jsx';
 export default function Overview() {
   let { defaultItem } = useContext(AppContext);
 
-  /* define a default style based on the default? property of the results object */
-  let defaultStyle = defaultItem.results.filter((item) => item['default?'] === true)[0];
-  // if there is no default style just use the first item in the results array
-  if (defaultStyle === undefined) {
-    [defaultStyle] = defaultItem.results;
-  }
 
-  let [currentStyle, setCurrentStyle] = useState(defaultStyle);
+  let [currentStyle, setCurrentStyle] = useState({});
+
+  useEffect(()=> {
+    /* define a default style based on the default? property of the results object */
+    let defaultStyle = defaultItem.results.filter((item) => item['default?'] === true)[0];
+    // if there is no default style just use the first item in the results array
+    if (defaultStyle === undefined) {
+      [defaultStyle] = defaultItem.results;
+    }
+    setCurrentStyle(defaultStyle);
+  }, [defaultItem]);
 
 
   return (
@@ -25,14 +29,17 @@ export default function Overview() {
       <h2 className='overview-title'>Overview</h2>
       <div className='flexContainer'>
         <LeftPanel />
-        <RightPanel />
+        <RightPanel currItem={defaultItem} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} />
       </div>
       <div className='flexContainer'>
         <span style={{width:'60%'}}>
-          "Product slogan goes here"
+          <b>{defaultItem.slogan}</b>
+          <br />
+          <br />
+          {defaultItem.description}
         </span>
         <span style={{borderLeft:'1px solid black', paddingLeft: 10}}>
-          Product features here
+          {defaultItem.features.map(feat => (<div key={feat.feature}><span>✓</span> {feat.feature}: {feat.value}</div>))}
         </span>
       </div>
     </div>

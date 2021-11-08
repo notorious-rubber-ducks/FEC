@@ -14,7 +14,7 @@ const StarRatings = ({ id }) => {
         );
       })
       .catch((err) => err);
-  }, []);
+  }, [id]);
 
   return (
     <div className="ratings">
