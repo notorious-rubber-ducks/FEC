@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import StarRatings from '../sharedComponents/StarRatings.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import Checkout from './Checkout.jsx';
 
 
 export default function RightPanel ({currItem, currentStyle, setCurrentStyle}) {
@@ -23,10 +24,11 @@ export default function RightPanel ({currItem, currentStyle, setCurrentStyle}) {
           <b>Style {'> '}</b>
           {currentStyle.name}
         </span>
-        <StyleSelector styles={currItem.results}/>
+        <StyleSelector styles={currItem.results} setStyle={setCurrentStyle}/>
       </div>
+      <br />
       <div>
-        {'< checkout mod goes here >'}
+        <Checkout currentStyle={currentStyle}/>
       </div>
     </span>
   );
