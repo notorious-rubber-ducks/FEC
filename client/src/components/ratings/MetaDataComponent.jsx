@@ -53,5 +53,5 @@ const MetaDataComponent = ({ reviewDataProps, metaDataProps }) => {
     </div>
   );
 };
-
+// comment
 export default MetaDataComponent;

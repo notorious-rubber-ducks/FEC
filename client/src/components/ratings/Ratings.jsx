@@ -32,15 +32,27 @@ const Ratings = ({ captureMetaData }) => {
   return (
     <div id="ratings" onKeyPress={() => {}} onClick={(e) => { captureMetaData(e, 'ratings'); }} style={{ marginTop: '50px', paddingTop: '20px', borderTop: '2px solid' }}>
       <div style={{
-        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', marginBottom: '5%',
+        display: 'flex',
+        flex: '0 0 30%',
+        width: '50%',
+        margin: '5%',
+      }}
+      >
+        <h3>Ratings and Reviews</h3>
+      </div>
+      <div style={{
+        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', margin: '5%',
       }}
       >
 
-        <div style={{ flexBasis: '40%', marginLeft: '5%', flex: '1' }}>
+        <div style={{
+          flexBasis: '40%', flex: '0 0 30%', width: '50%',
+        }}
+        >
           <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
         </div>
 
-        <div style={{ flex: '1' }}>
+        <div style={{ flex: '0 0 80%', border: '1px solid red' }}>
           <ReviewsList
             reviewDataProps={reviewData}
             metaDataProps={metaData}
