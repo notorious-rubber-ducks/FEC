@@ -40,14 +40,12 @@ body {
   width: 100%;
   height: auto;
   margin: auto;
-  overflow: auto;
   display: flex;
   flex-direction: column;
 }
 
 #questions {
   padding: 3px;
-  margin-bottom: 50px;
 }
 
 #questions div {
@@ -102,6 +100,19 @@ body {
 
 .overview-title {
   padding: 10px;
+}
+
+#overview .checkout {
+  padding: 15px;
+  margin: auto;
+}
+
+#overview .checkout select {
+  padding: 15px;
+  min-width: 50px;
+  text-align: start;
+  border: 1px solid maroon;
+  color: #0f0c5d;
 }
 
 button {

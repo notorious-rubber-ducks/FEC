@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import QtySelect from './QtySelector.jsx';
 
@@ -6,27 +7,48 @@ export default function Checkout ({ currentStyle }) {
   let [currentSku, setCurrentSku] = useState(skus[0]);
   let [enableQty, setEnableQty] = useState(false);
   let [currQty, setCurrQty] = useState(0);
+  let [outOfStock, setOutOfStock] = useState(false);
 
   useEffect(() => {
     skus = Object.keys(currentStyle.skus);
+    if (skus[0] === 'null') {
+      setOutOfStock(true);
+    }
     setEnableQty(false);
     setCurrentSku(skus[0]);
-  }, [currentStyle])
+  }, [currentStyle]);
 
-  console.log(currentStyle);
-  console.log(skus);
+  const handleSize = function (e) {
+    if (e.target.value === 'Select a Size') {
+      setEnableQty(false);
+      return;
+    }
+    setCurrentSku(e.target.value);
+    if (currentStyle.skus[e.target.value].quantity !== 0) {
+      setEnableQty(true);
+    }
+  }
+
+  const handleCheckout = function (sku_id) {
+    axios.post('/cart', {sku_id})
+    .then(status => console.log(status))
+    .catch(err => console.error(err));
+  }
 
   return (
-    <div>
-      <select name="Select a Size" onChange={e => {
-        setCurrentSku(e.target.value);
-        if (currentStyle.skus[e.target.value].quantity !== 0) {
-          setEnableQty(true);
-        }
-        }}>
-        <option value="Select a Size">Select a Size</option>
-        {skus.map(sku => (<option key={sku} value={sku}>{currentStyle.skus[sku].size}</option>))}
-      </select>
+    <div className='checkout'>
+      <select name="Select a Size" onChange={handleSize} disabled={outOfStock}>
+          {outOfStock
+          ? <option value='out of stock'>OUT OF STOCK</option>
+          : <option value="Select a Size">Select a Size</option>
+          }
+            {skus.map(sku => {
+              if (sku === 'null') {
+                return (<option key='oos'>OUT OF STOCK</option>)
+              }
+              return (<option key={sku} value={sku}>{currentStyle.skus[sku].size}</option>)
+              })}
+      </select> {'\u00A0'}{'\u00A0'}{'\u00A0'}
       <QtySelect
         currentStyle={currentStyle}
         enableQty={enableQty}
@@ -34,7 +56,8 @@ export default function Checkout ({ currentStyle }) {
         setQty={setCurrQty}
       />
       <br/>
-      <button onClick={() => console.log(currentSku, currQty)}>Add to Cart</button>
+      <br/>
+      <button onClick={() => handleCheckout(currentSku)} disabled={outOfStock}>Add to Cart</button>
     </div>
   );
 }
