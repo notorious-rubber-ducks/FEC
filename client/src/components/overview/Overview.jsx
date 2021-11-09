@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable implicit-arrow-linebreak */
 import React, { useContext, useState, useEffect } from 'react';
@@ -5,7 +6,7 @@ import AppContext from '../../hooks/context.js';
 import LeftPanel from './LeftPanel.jsx';
 import RightPanel from './RightPanel.jsx';
 
-export default function Overview() {
+export default function Overview({ captureMetaData }) {
   const { defaultItem } = useContext(AppContext);
 
   function getDefaultStyle() {
@@ -24,8 +25,7 @@ export default function Overview() {
   }, [defaultItem]);
 
   return (
-    <div id="overview">
-      <h2 className="overview-title">Overview</h2>
+    <div id="overview" role="button" tabIndex={0} onKeyPress={() => {}} onClick={(e) => captureMetaData(e, 'overview')}>
       <div className="flexContainer">
         <LeftPanel currentStyle={currentStyle} />
         <RightPanel
