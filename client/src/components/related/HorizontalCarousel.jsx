@@ -58,8 +58,10 @@ export default function HorizontalCarousel({ items }) {
           // need to define key and redefine if needed
           // so there are unique keys
           let key = item.id;
-
-          if (!key) {
+          // check both an item from the products result and an item from the styles result
+          // to ensure that the API didn't time out and therefore the card will display
+          // add to outfit
+          if (!key && !item.campus) {
             key = 'add item';
           } else if (typeof items[0] === 'string') {
             key = `${key}-${identifier}`;
