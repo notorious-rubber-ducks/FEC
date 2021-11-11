@@ -87,7 +87,7 @@ export default function Answer({id}) {
       </span>
       {id.photos.length ? (<br />) : null}
       <span>
-        {id.photos.length ? id.photos.map(img => (<span><img src={img} style={imageStyle} onClick={() => imgModal(img)}/> {'\u00A0'}</span>)) : null}
+        {id.photos.length ? id.photos.map((img, index) => (<span><img src={img} style={imageStyle} alt={'thumbnail' + index} onClick={() => imgModal(img)}/> {'\u00A0'}</span>)) : null}
       </span>
       <br/>
       <span style={{fontSize:11}}>
