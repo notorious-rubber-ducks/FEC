@@ -13,6 +13,7 @@ export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
   const [imageDirs, setImageDirs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mode, setMode] = useState(false);
 
   useEffect(() => {
     axios.get('/products')
@@ -46,9 +47,20 @@ export default function App() {
   }
 
   return (
-
+    <div className={mode ? 'dark' : 'light'}>
+      <div style={{padding:5, float:'right'}}>
+        <button onClick={() => {
+          if (!mode) {
+            document.getElementById('container').setAttribute('style', 'background-color: black')
+            setMode(true);
+          } else {
+            document.getElementById('container').setAttribute('style', 'background-color: #bbd5ed')
+            setMode(false);
+          }
+        }}>{mode ? 'light' : 'dark'}</button>
+      </div>
     <AppContext.Provider value={{
-      defaultItem, setDefaultItem, imageDirs, setImageDirs,
+      defaultItem, setDefaultItem, imageDirs, setImageDirs, mode, setMode
     }}
     >
       <MetaData>
@@ -58,5 +70,7 @@ export default function App() {
         <Ratings key="ratings" />
       </MetaData>
     </AppContext.Provider>
+
+    </div>
   );
 }

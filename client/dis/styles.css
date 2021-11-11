@@ -1,24 +1,23 @@
 html,
 body {
-  /* #d0f7fc; */
-  background-color: #bbd5ed;
   color: #000;
   height: 100%;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-  width: 80%;
+#container {
+  width: 100vw;
   margin: auto;
   top: 0;
+  background-color: #bbd5ed;
 }
 
 #header {
-  /* linear-gradient(to right, #b00b69, #420420); */
   top: 0;
   position: sticky;
   background-color: #09243d;
-  width: 100%;
+  width: 80%;
   height: 50px;
   color: white;
   margin: auto;
@@ -37,14 +36,24 @@ body {
 }
 
 #app {
-  background-image: url('/assets/fectexture.png');
-  background-color: #3774ad;
-  background-position: bottom;
-  width: 100%;
+  width: 80%;
   height: auto;
   margin: auto;
   display: flex;
   flex-direction: column;
+}
+
+#app .light {
+  background-color: #3774ad;
+  background-image: url('/assets/fectexture.png');
+  background-position: bottom;
+}
+
+#app .dark {
+  background-color: #030d16;
+  background-image: url('/assets/fectexture.png');
+  background-position: bottom;
+  color: #bbd5ed;
 }
 
 #questions {
