@@ -6,7 +6,6 @@ import { FacebookIcon, TwitterIcon, PinterestIcon } from 'react-share';
 
 
 export default function RightPanel ({currItem, currentStyle, setCurrentStyle}) {
-  console.log(currItem)
 
   let price = currentStyle.sale_price
   ? (<p><strike>${currItem.default_price}</strike>  <span style={{color:'red'}}>${currentStyle.sale_price}</span></p>)
@@ -22,7 +21,7 @@ export default function RightPanel ({currItem, currentStyle, setCurrentStyle}) {
       </div>
       <div>
         <h4>{currItem.category}</h4>
-        <h2>{currItem.name}</h2>
+        <h1>{currItem.name}</h1>
       </div>
       {price}
       <div>

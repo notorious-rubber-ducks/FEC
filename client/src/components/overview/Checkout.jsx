@@ -11,6 +11,7 @@ export default function Checkout ({ currentStyle }) {
 
   useEffect(() => {
     skus = Object.keys(currentStyle.skus);
+    setOutOfStock(false);
     if (skus[0] === 'null') {
       setOutOfStock(true);
     }
