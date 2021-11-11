@@ -1,28 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import StarRatings from '../sharedComponents/StarRatings.jsx';
 import { metaObj } from './CharObj.js';
 
 const MetaDataComponent = ({ reviewDataProps, metaDataProps }) => {
-  const avgRating = () => (reviewDataProps.results.reduce((a, b) => (a + b.rating), 0) / reviewDataProps.count);
+  const avgRating = () => Math.round((reviewDataProps.results.reduce((a, b) => (a + b.rating), 0) / reviewDataProps.results.length) * 10) / 10;
 
   return (
     <div>
-      Ratings and Reviews
-      <br />
-      <span>
-        {reviewDataProps ? <h1>{avgRating()}</h1> : null}
-        {reviewDataProps ? <StarRatings id={reviewDataProps.product} /> : null}
-      </span>
-      <br />
+
+      <div style={{
+        display: 'flex', flexDirection: 'row', alignContent: 'stretch', alignItems: 'center',
+      }}
+      >
+
+        <div style={{ fontSize: '35px', marginRight: '6%' }}>{reviewDataProps ? <h1>{avgRating()}</h1> : null}</div>
+        <div>{reviewDataProps ? <StarRatings id={reviewDataProps.product} /> : null}</div>
+
+      </div>
+
       { metaDataProps ? Object.keys(metaDataProps.ratings).reverse().map((key) => (
-        <div>
+        <div style={{ margin: '2%' }}>
           <label htmlFor="ratings">
             {Number(key)}
             {' '}
             {' '}
             stars
+            {' '}
           </label>
-          <meter id="ratings" value={metaDataProps.ratings[key]} min="0" max="10" />
+          <meter className="ratings" value={metaDataProps.ratings[key]} min="0" max="10" style={{ width: '70%' }} optimum="1" />
         </div>
       )) : null}
       <br />
@@ -35,7 +40,7 @@ const MetaDataComponent = ({ reviewDataProps, metaDataProps }) => {
               {key}
             </label>
             <br />
-            <input type="range" min="1" max="100" value="50" className="slider" id="myRange" />
+            <input type="range" min="1" max="5" value={metaDataProps.characteristics[key].value} className="slider" id="myRange" />
             <br />
             {Object.entries(metaObj).filter((item) => item[0] === key).flat().splice(1, 1)
               .map((newItem) => (
@@ -50,8 +55,9 @@ const MetaDataComponent = ({ reviewDataProps, metaDataProps }) => {
 
         )) : null}
       </div>
+
     </div>
   );
 };
-// comment
+
 export default MetaDataComponent;

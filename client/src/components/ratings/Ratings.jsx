@@ -14,7 +14,11 @@ const Ratings = ({ captureMetaData }) => {
   useEffect(() => {
     Promise.all([
       axios
-        .get(`/reviews?product_id=${context.id}`)
+        .get(`/reviews?product_id=${context.id}`, {
+          params: {
+            count: 1000,
+          },
+        })
         .then(({ data }) => data),
       axios
         .get(`/reviews/meta?product_id=${context.id}`)
@@ -27,7 +31,7 @@ const Ratings = ({ captureMetaData }) => {
         setSize(data[0].count);
       })
       .catch((err) => err);
-  }, []);
+  }, [context.id]);
 
   return (
     <div id="ratings" onKeyPress={() => {}} onClick={(e) => { captureMetaData(e, 'ratings'); }} style={{ marginTop: '50px', paddingTop: '20px', borderTop: '2px solid' }}>
@@ -35,13 +39,13 @@ const Ratings = ({ captureMetaData }) => {
         display: 'flex',
         flex: '0 0 30%',
         width: '50%',
-        margin: '5%',
+        marginLeft: '5%',
       }}
       >
-        <h3>Ratings and Reviews</h3>
+        <h2>Ratings and Reviews</h2>
       </div>
       <div style={{
-        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', margin: '5%',
+        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', margin: '2%',
       }}
       >
 
@@ -52,7 +56,7 @@ const Ratings = ({ captureMetaData }) => {
           <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
         </div>
 
-        <div style={{ flex: '0 0 80%', border: '1px solid red' }}>
+        <div className="scrollable" style={{ flex: '0 0 80%', overflowY: 'scroll', maxHeight: '600px' }}>
           <ReviewsList
             reviewDataProps={reviewData}
             metaDataProps={metaData}
