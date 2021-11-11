@@ -76,11 +76,11 @@ function Related({ captureMetaData }) {
     >
       <div id="related" role="button" tabIndex={0} onKeyPress={() => {}} onClick={(e) => captureMetaData(e, 'related')}>
         <div id="related-products">
-          <h3 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h3>
+          <h2 style={{ marginLeft: '10px' }}>RELATED PRODUCTS</h2>
           <HorizontalCarousel items={related} />
         </div>
         <div id="your-outfit">
-          <h3 style={{ marginLeft: '10px' }}>YOUR OUTFIT</h3>
+          <h2 style={{ marginLeft: '10px' }}>YOUR OUTFIT</h2>
           <HorizontalCarousel items={outfits} />
         </div>
       </div>
