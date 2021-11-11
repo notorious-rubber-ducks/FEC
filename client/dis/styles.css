@@ -1,24 +1,23 @@
 html,
 body {
-  /* #d0f7fc; */
-  background-color: #bbd5ed;
   color: #000;
   height: 100%;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-  width: 80%;
+#container {
+  width: 100vw;
   margin: auto;
   top: 0;
+  background-color: #bbd5ed;
 }
 
 #header {
-  /* linear-gradient(to right, #b00b69, #420420); */
   top: 0;
   position: sticky;
   background-color: #09243d;
-  width: 100%;
+  width: 80%;
   height: 50px;
   color: white;
   margin: auto;
@@ -37,14 +36,24 @@ body {
 }
 
 #app {
-  background-image: url('/assets/fectexture.png');
-  background-color: #3774ad;
-  background-position: bottom;
-  width: 100%;
+  width: 80%;
   height: auto;
   margin: auto;
   display: flex;
   flex-direction: column;
+}
+
+#app .light {
+  background-color: #3774ad;
+  background-image: url('/assets/fectexture.png');
+  background-position: bottom;
+}
+
+#app .dark {
+  background-color: #030d16;
+  background-image: url('/assets/fectexture.png');
+  background-position: bottom;
+  color: #bbd5ed;
 }
 
 #questions {
@@ -291,14 +300,14 @@ a {
 
 /*slider styles*/
 .slidecontainer {
-  width: 75%;
+  width: 85%;
 }
 
 .slider {
   -webkit-appearance: none;
   width: 100%;
   height: 10px;
-  background: #d3d3d3;
+  background: rgba(216, 212, 212, 0.87);
   outline: none;
   opacity: 0.7;
   -webkit-transition: 0.2s;
@@ -309,13 +318,13 @@ a {
   width: 33.33333%;
   font-size: 10px;
   text-align: left;
-  color: blue;
+  color: rgb(94, 94, 95);
   float: left;
   position: relative;
 }
 .middle {
   font-size: 10px;
-  color: blue;
+  color: rgb(94, 94, 95);
 
   float: left;
   width: 33.33333%;
@@ -325,7 +334,7 @@ a {
   width: 33.33333%;
   font-size: 10px;
   text-align: right;
-  color: blue;
+  color: rgb(94, 94, 95);
   float: right;
 }
 
@@ -335,26 +344,10 @@ a {
   height: 20px;
   width: 8px;
   border-radius: 12px;
-  background: #286505;
+  background: rgb(10, 175, 24);
   cursor: pointer;
   -webkit-appearance: none;
 }
-
-/* .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 10px;
-  background: #04AA6D;
-  cursor: none;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #04AA6D;
-  cursor: pointer;
-} */
 
 /*related styles*/
 #carousel {
