@@ -8,7 +8,6 @@ import Ratings from './components/ratings/Ratings.jsx';
 import Related from './components/related/Related.jsx';
 import AppContext from './hooks/context';
 import MetaData from './components/shared/MetaData.jsx';
-import ToggleSwitch from './components/shared/ToggleSwitch.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
