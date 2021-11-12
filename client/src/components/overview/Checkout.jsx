@@ -54,8 +54,12 @@ export default function Checkout({ currentStyle }) {
           ? <option value='out of stock'>OUT OF STOCK</option>
           : <option value="Select a Size">Select a Size</option>
           }
-          return (<option key={sku} value={sku}>{currentStyle.skus[sku].size}</option>);
-        })}
+          {skus.map(sku => {
+              if (sku === 'null') {
+                return (<option key='oos'>OUT OF STOCK</option>)
+              }
+              return (<option key={sku} value={sku}>{currentStyle.skus[sku].size}</option>)
+              })}
       </select>
       {' '}
       {'\u00A0'}
