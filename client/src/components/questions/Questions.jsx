@@ -75,15 +75,9 @@ export default function Questions({ captureMetaData }) {
   }
 
   return (
-    <div id="questions" onClick={(e) => captureMetaData(e, 'questions')}>
-      {showModal && <QuestionModal closeModal={setShowModal} />}
-      <h2>
-        Questions
-        {' '}
-        &
-        {' '}
-        Answers
-      </h2>
+    <div id='questions' onClick={e => captureMetaData(e, 'questions')}>
+      {showModal && <QuestionModal closeModal={setShowModal}/>}
+      <h2>QUESTIONS {'&'} ANSWERS</h2>
       <div>
         <input type="text" placeholder="Have a question? Search for answers..." className="qSearch" onChange={getSearch} />
       </div>

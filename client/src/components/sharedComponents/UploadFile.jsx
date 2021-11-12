@@ -21,7 +21,7 @@ const UploadFile = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <input type="file" id="myFile" name="filename" value={fileDir} onChange={handleChange} />
-        {fileDirLength === 5 ? null : <input type="submit" />}
+        {fileDirLength === 5 ? null : <button>Upload</button>}
       </form>
     </div>
   );

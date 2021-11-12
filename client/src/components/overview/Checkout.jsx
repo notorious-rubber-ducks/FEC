@@ -16,6 +16,7 @@ export default function Checkout({ currentStyle }) {
       setOutOfStock(true);
     }
     setEnableQty(false);
+    setCurrQty(0);
     setCurrentSku(skus[0]);
   }, [currentStyle]);
 
@@ -31,20 +32,27 @@ export default function Checkout({ currentStyle }) {
   };
 
   const handleCheckout = function (sku_id) {
-    axios.post('http://localhost:3000/cart', { sku_id })
-      .then((status) => console.log(status))
-      .catch((err) => console.error(err));
-  };
+
+    if (document.getElementById('sizeSelect').value === 'Select a Size') {
+      alert('You must select a size');
+    }
+    if (!currQty) {
+      alert('You must select a quantity');
+    }
+    if(currQty && currentSku) {
+      console.log('valid cart');
+      axios.post('http://localhost:3000/cart', {sku_id})
+      .then(status => console.log(status))
+      .catch(err => console.error(err));
+    }
+  }
 
   return (
-    <div className="checkout">
-      <select name="Select a Size" onChange={handleSize} disabled={outOfStock}>
-        {outOfStock
-          ? <option value="out of stock">OUT OF STOCK</option>
-          : <option value="Select a Size">Select a Size</option>}
-        {skus.map((sku) => {
-          if (sku === 'null') {
-            return (<option key="oos">OUT OF STOCK</option>);
+    <div className='checkout'>
+      <select id="sizeSelect" name="Select a Size" onChange={handleSize} disabled={outOfStock}>
+          {outOfStock
+          ? <option value='out of stock'>OUT OF STOCK</option>
+          : <option value="Select a Size">Select a Size</option>
           }
           return (<option key={sku} value={sku}>{currentStyle.skus[sku].size}</option>);
         })}
