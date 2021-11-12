@@ -8,6 +8,7 @@ import Ratings from './components/ratings/Ratings.jsx';
 import Related from './components/related/Related.jsx';
 import AppContext from './hooks/context';
 import MetaData from './components/shared/MetaData.jsx';
+import ToggleSwitch from './components/shared/ToggleSwitch.jsx';
 
 export default function App() {
   const [defaultItem, setDefaultItem] = useState({});
@@ -15,16 +16,16 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/products')
+    axios.get('http://localhost:3000/products')
       .then((response) => {
         // get first item
         const { id } = response.data[0];
 
         // generate promise array and pass into promise all
         Promise.all([
-          axios.get(`/products/${id}`)
+          axios.get(`http://localhost:3000/products/${id}`)
             .then(({ data }) => data),
-          axios.get(`products/${id}/styles`)
+          axios.get(`http://localhost:3000/products/${id}/styles`)
             .then(({ data }) => (data)),
         ])
           .then((values) => {
@@ -33,9 +34,9 @@ export default function App() {
             // set loading to false so page will render
             setLoading(false);
           })
-          .catch((err) => err);
+          .catch(console.log);
       })
-      .catch((err) => err);
+      .catch(console.log);
   }, []);
 
   // conditional render
@@ -51,6 +52,7 @@ export default function App() {
       defaultItem, setDefaultItem, imageDirs, setImageDirs,
     }}
     >
+      {/* <ToggleSwitch text="Light Mode" /> */}
       <MetaData>
         <Overview key="overview" />
         <Related key="related" />

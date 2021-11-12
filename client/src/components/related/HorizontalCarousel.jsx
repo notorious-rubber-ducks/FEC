@@ -12,7 +12,7 @@ export default function HorizontalCarousel({ items }) {
     identifier = 'outfit';
   }
 
-  // define constants
+  // // define constants
   const cardWidth = 220;
 
   const [location, setLocation] = useState(0);

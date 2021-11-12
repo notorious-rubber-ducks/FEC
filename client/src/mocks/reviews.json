@@ -1,0 +1,217 @@
+[{
+  "product": "44388",
+  "page": 0,
+  "count": 20,
+  "results": [
+      {
+          "review_id": 1074998,
+          "rating": 2,
+          "summary": "dope",
+          "recommend": true,
+          "response": null,
+          "body": "really dope",
+          "date": "2021-11-04T00:00:00.000Z",
+          "reviewer_name": "mynameisjeff",
+          "helpfulness": 56,
+          "photos": []
+      },
+      {
+          "review_id": 1075026,
+          "rating": 3,
+          "summary": "Miracle Whip",
+          "recommend": true,
+          "response": null,
+          "body": "Ian Should Leave",
+          "date": "2021-11-04T00:00:00.000Z",
+          "reviewer_name": "aasdas",
+          "helpfulness": 19,
+          "photos": []
+      },
+      {
+          "review_id": 1075103,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 3,
+          "photos": []
+      },
+      {
+          "review_id": 1075105,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 3,
+          "photos": []
+      },
+      {
+          "review_id": 1075104,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 3,
+          "photos": []
+      },
+      {
+          "review_id": 1074996,
+          "rating": 2,
+          "summary": "dope",
+          "recommend": true,
+          "response": null,
+          "body": "really dope",
+          "date": "2021-11-04T00:00:00.000Z",
+          "reviewer_name": "mynameisjeff",
+          "helpfulness": 2,
+          "photos": []
+      },
+      {
+          "review_id": 1075107,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 2,
+          "photos": []
+      },
+      {
+          "review_id": 1075108,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 2,
+          "photos": []
+      },
+      {
+          "review_id": 1075106,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 1,
+          "photos": []
+      },
+      {
+          "review_id": 1075102,
+          "rating": 3,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 1,
+          "photos": []
+      },
+      {
+          "review_id": 841652,
+          "rating": 4,
+          "summary": "best for hiding in the livingroom",
+          "recommend": true,
+          "response": null,
+          "body": "no one can find me on my camo couch",
+          "date": "2021-09-27T00:00:00.000Z",
+          "reviewer_name": "JP",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 841651,
+          "rating": 5,
+          "summary": "This helped in the north",
+          "recommend": true,
+          "response": null,
+          "body": "CHA!",
+          "date": "2021-09-27T00:00:00.000Z",
+          "reviewer_name": "Sakura",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1074995,
+          "rating": 2,
+          "summary": "dope",
+          "recommend": true,
+          "response": null,
+          "body": "really dope",
+          "date": "2021-11-04T00:00:00.000Z",
+          "reviewer_name": "mynameisjeff",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1075051,
+          "rating": 2,
+          "summary": "Miracle Whip",
+          "recommend": true,
+          "response": null,
+          "body": "Review",
+          "date": "2021-11-05T00:00:00.000Z",
+          "reviewer_name": "Me",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1075050,
+          "rating": 2,
+          "summary": "Its ya boi",
+          "recommend": true,
+          "response": null,
+          "body": "Testing",
+          "date": "2021-11-05T00:00:00.000Z",
+          "reviewer_name": "Me",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1075110,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1075109,
+          "rating": 5,
+          "summary": "i like",
+          "recommend": true,
+          "response": null,
+          "body": "this is a really good review",
+          "date": "2021-11-06T00:00:00.000Z",
+          "reviewer_name": "itMe",
+          "helpfulness": 0,
+          "photos": []
+      }
+  ]
+},{
+  "product": "44395",
+  "page": 0,
+  "count": 20,
+  "results": []
+}
+]

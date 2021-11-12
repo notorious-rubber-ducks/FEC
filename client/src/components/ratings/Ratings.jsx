@@ -14,14 +14,14 @@ const Ratings = ({ captureMetaData }) => {
   useEffect(() => {
     Promise.all([
       axios
-        .get(`/reviews?product_id=${context.id}`, {
+        .get(`http://localhost:3000/reviews?product_id=${context.id}`, {
           params: {
             count: 1000,
           },
         })
         .then(({ data }) => data),
       axios
-        .get(`/reviews/meta?product_id=${context.id}`)
+        .get(`http://localhost:3000/reviews/meta?product_id=${context.id}`)
         .then(({ data }) => data),
     ])
       .then((data) => {

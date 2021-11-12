@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Helpful ({ helpfulness, calledFrom, id}) {
+export default function Helpful({ helpfulness, calledFrom, id }) {
   let apiEndPoint;
 
-  let helpLinkStyling = {
-    'textDecoration': 'underline',
-    color: 'blue'
+  const helpLinkStyling = {
+    textDecoration: 'underline',
+    color: 'blue',
   };
 
   let reportLinkStyling;
 
-  let [helpful, setHelpful] = useState(helpfulness);
-  let [reported, setReported] = useState('Report');
-  let [voted, setVoted] = useState(false);
+  const [helpful, setHelpful] = useState(helpfulness);
+  const [reported, setReported] = useState('Report');
+  const [voted, setVoted] = useState(false);
 
   if (reported === 'Report') {
     reportLinkStyling = {
-      'textDecoration': 'underline',
-      color: 'blue'
+      textDecoration: 'underline',
+      color: 'blue',
     };
   } else {
     reportLinkStyling = {
-      'textDecoration': 'none',
-      color: 'black'
+      textDecoration: 'none',
+      color: 'black',
     };
   }
 
   if (calledFrom === 'q') {
-    apiEndPoint = `/qa/questions/${id}`
+    apiEndPoint = `/qa/questions/${id}`;
   } else if (calledFrom === 'a') {
-    apiEndPoint = `/qa/answers/${id}`
+    apiEndPoint = `/qa/answers/${id}`;
   } else if (calledFrom === 'review') {
-    apiEndPoint = `/reviews/${id}`
+    apiEndPoint = `/reviews/${id}`;
   }
 
-  let fontStyle = {
-    fontSize: 12
-  }
+  const fontStyle = {
+    fontSize: 12,
+  };
 
   function isHelpful() {
     if (!voted) {
       console.log('should only see this once');
       setHelpful(helpfulness + 1);
       setVoted(true);
-      axios.put(`${apiEndPoint}/helpful`);
+      axios.put(`http://localhost:3000${apiEndPoint}/helpful`);
     }
   }
 
@@ -52,23 +52,43 @@ export default function Helpful ({ helpfulness, calledFrom, id}) {
     if (reported === 'Report') {
       console.log('should only see this once');
       setReported('Reported');
-      axios.put(`${apiEndPoint}/report`);
+      axios.put(`http://localhost:3000${apiEndPoint}/report`);
     }
   }
 
   if (calledFrom === 'q') {
     return (
-      <span style={fontStyle} className='qHelpful'>
-        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a> {' | '} <a style={reportLinkStyling} onClick={report}>{reported}</a>{' | \u00A0'} {/* <- non-breaking space */}
+      <span style={fontStyle} className="qHelpful">
+        Helpful?
+        {' '}
+        <a onClick={isHelpful} style={helpLinkStyling}>
+          Yes(
+          {helpful}
+          )
+        </a>
+        {' '}
+        {' | '}
+        {' '}
+        <a style={reportLinkStyling} onClick={report}>{reported}</a>
+        {' | \u00A0'}
+        {' '}
+        {/* <- non-breaking space */}
       </span>
-    )
-  } else {
-    return (
-      <span style={fontStyle}>
-        Helpful? <a onClick={isHelpful} style={helpLinkStyling}>Yes({helpful})</a>{' | '} {/* <- non-breaking space */}
-        <a onClick={report} style={reportLinkStyling}>{reported}</a>
-      </span>
-    )
+    );
   }
-
-};
+  return (
+    <span style={fontStyle}>
+      Helpful?
+      {' '}
+      <a onClick={isHelpful} style={helpLinkStyling}>
+        Yes(
+        {helpful}
+        )
+      </a>
+      {' | '}
+      {' '}
+      {/* <- non-breaking space */}
+      <a onClick={report} style={reportLinkStyling}>{reported}</a>
+    </span>
+  );
+}
