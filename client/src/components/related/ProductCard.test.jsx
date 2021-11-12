@@ -37,7 +37,7 @@ describe('app level test', () => {
       component = render(<App />);
       expect(component.getByText('Loading now...')).toBeInTheDocument();
       // Camo Onesie is the title of the first product in the list
-      await component.findByText('What I expected');
+      await component.findByText('Camo Onesie');
     });
 
     expect(component.container.querySelector('#overview')).toBeInTheDocument();
