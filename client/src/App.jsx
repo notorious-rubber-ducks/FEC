@@ -51,7 +51,6 @@ export default function App() {
       defaultItem, setDefaultItem, imageDirs, setImageDirs,
     }}
     >
-      {/* <ToggleSwitch text="Light Mode" /> */}
       <MetaData>
         <Overview key="overview" />
         <Related key="related" />
