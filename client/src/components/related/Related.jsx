@@ -6,7 +6,7 @@ import AppContext from '../../hooks/context';
 import RelatedContext from '../../hooks/relatedContext';
 import HorizontalCarousel from './HorizontalCarousel.jsx';
 
-function Related({ captureMetaData }) {
+export default function Related({ captureMetaData }) {
   // state for related item array
   const [related, setRelated] = useState([]);
   const [outfits, setOutfits] = useState(['Add to Outfit']);
@@ -18,7 +18,7 @@ function Related({ captureMetaData }) {
   // define variable to get the related item array
   function getRelated(id) {
     // get list of related items
-    axios.get(`/products/${id}/related`)
+    axios.get(`http://localhost:3000/products/${id}/related`)
       .then((response) => {
         // clean up related data coming in from API so related item array only has unique values
         const relatedArray = response.data.filter(
@@ -26,11 +26,11 @@ function Related({ captureMetaData }) {
         );
 
         // create an array of promises for style data
-        const stylePromise = relatedArray.map((item) => axios.get(`/products/${item}/styles`)
+        const stylePromise = relatedArray.map((item) => axios.get(`http://localhost:3000/products/${item}/styles`)
           .then(({ data }) => data));
 
         // create an array of promises for normal data
-        const normalPromise = relatedArray.map((product) => axios.get(`/products/${product}`)
+        const normalPromise = relatedArray.map((product) => axios.get(`http://localhost:3000/products/${product}`)
           .then(({ data }) => data));
 
         // use promise all on the array of promises so that when resolved the results
@@ -87,5 +87,3 @@ function Related({ captureMetaData }) {
     </RelatedContext.Provider>
   );
 }
-
-export default Related;

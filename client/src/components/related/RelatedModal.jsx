@@ -43,7 +43,7 @@ export default function RelatedModal({ closeModal, currentItem, productCardItem 
       <div className="modalContainer" style={{ height: `${1.25 * (allFeatures.length + 2)}em` }}>
         <div className="titleCloseBtn" />
         <div className="title">COMPARISON</div>
-        <div className="body" style={{ justifyContent: 'space-between', overflowY: 'scroll' }}>
+        <div className="body" style={{ justifyContent: 'space-between', overflowY: 'auto' }}>
           <span style={{ width: `${nameLength}ch` }}>
             <div><strong>{currentItem.name}</strong></div>
             {allFeatures.map((item) => item[0])}

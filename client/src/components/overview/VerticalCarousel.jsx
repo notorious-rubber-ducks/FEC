@@ -67,7 +67,7 @@ export default function VerticalCarousel({ currentImage, setCurrentImage, curren
               style={{ display: 'block' }}
             >
               <img
-                src={item.thumbnail_url === null ? './assets/image-not-found.png' : item.thumbnail_url}
+                src={item.thumbnail_url === null ? './assets/image-not-found.png' : item.thumbnail_url.split('w=')[0].concat('w=100&q=80')}
                 alt={currentStyle.name}
                 style={setImageStyle(index, currentImage)}
               />

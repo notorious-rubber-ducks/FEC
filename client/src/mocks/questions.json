@@ -1,0 +1,289 @@
+[{
+  "product_id": "44388",
+  "results": [
+      {
+          "question_id": 542899,
+          "question_body": "Notorious Rubber Ducks?",
+          "question_date": "2021-11-03T00:00:00.000Z",
+          "asker_name": "joe_pope",
+          "question_helpfulness": 37,
+          "reported": false,
+          "answers": {
+              "5087366": {
+                  "id": 5087366,
+                  "body": "DUCKS! DUCKS! DUCKS! DUCKS! ",
+                  "date": "2021-11-03T00:00:00.000Z",
+                  "answerer_name": "N8",
+                  "helpfulness": 8,
+                  "photos": []
+              },
+              "5087404": {
+                  "id": 5087404,
+                  "body": "DUCKS! DUCKS! DUCKS! DUCKS!",
+                  "date": "2021-11-05T00:00:00.000Z",
+                  "answerer_name": "dpinzon",
+                  "helpfulness": 2,
+                  "photos": []
+              },
+              "5087405": {
+                  "id": 5087405,
+                  "body": "DUCKS! DUCKS! DUCKS! DUCKS!",
+                  "date": "2021-11-05T00:00:00.000Z",
+                  "answerer_name": "abunys",
+                  "helpfulness": 1,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 426488,
+          "question_body": "Where is this shipped from?",
+          "question_date": "2021-09-25T00:00:00.000Z",
+          "asker_name": "billy",
+          "question_helpfulness": 17,
+          "reported": false,
+          "answers": {
+              "3990352": {
+                  "id": 3990352,
+                  "body": "idk im in space rn",
+                  "date": "2021-09-25T00:00:00.000Z",
+                  "answerer_name": "Jeff Bezos",
+                  "helpfulness": 5,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 543008,
+          "question_body": "Is this comfy to traverse the rainforest in?",
+          "question_date": "2021-11-05T00:00:00.000Z",
+          "asker_name": "blablah",
+          "question_helpfulness": 1,
+          "reported": false,
+          "answers": {}
+      },
+      {
+          "question_id": 542930,
+          "question_body": "Are the zippers made out of 24k gold?",
+          "question_date": "2021-11-05T00:00:00.000Z",
+          "asker_name": "heyooo",
+          "question_helpfulness": 0,
+          "reported": false,
+          "answers": {}
+      },
+      {
+          "question_id": 542929,
+          "question_body": "Are the pockets big enough for a bunch of bananas?",
+          "question_date": "2021-11-05T00:00:00.000Z",
+          "asker_name": "Monkeez",
+          "question_helpfulness": 0,
+          "reported": false,
+          "answers": {}
+      },
+      {
+          "question_id": 542902,
+          "question_body": "What is the answer to life, the universe, and everything?",
+          "question_date": "2021-11-04T00:00:00.000Z",
+          "asker_name": "who_asked",
+          "question_helpfulness": 0,
+          "reported": false,
+          "answers": {
+              "5087372": {
+                  "id": 5087372,
+                  "body": "42",
+                  "date": "2021-11-04T00:00:00.000Z",
+                  "answerer_name": "DeepThought",
+                  "helpfulness": 0,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 542900,
+          "question_body": "What that air fryer doin?",
+          "question_date": "2021-11-03T00:00:00.000Z",
+          "asker_name": "joepope",
+          "question_helpfulness": 0,
+          "reported": false,
+          "answers": {}
+      },
+      {
+          "question_id": 542793,
+          "question_body": "what the dog doin?",
+          "question_date": "2021-10-29T00:00:00.000Z",
+          "asker_name": "badmeme",
+          "question_helpfulness": 0,
+          "reported": false,
+          "answers": {}
+      }
+  ]
+},{
+  "product_id": "44395",
+  "results": [
+      {
+          "question_id": 367446,
+          "question_body": "How long does it last?",
+          "question_date": "2018-09-12T00:00:00.000Z",
+          "asker_name": "l33tgamer",
+          "question_helpfulness": 7,
+          "reported": false,
+          "answers": {
+              "3437171": {
+                  "id": 3437171,
+                  "body": "I've had mine for months and still holdign up great!",
+                  "date": "2018-10-12T00:00:00.000Z",
+                  "answerer_name": "n00bgamer",
+                  "helpfulness": 3,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 367442,
+          "question_body": "What fabric is the top made of?",
+          "question_date": "2018-02-12T00:00:00.000Z",
+          "asker_name": "mrmrs",
+          "question_helpfulness": 6,
+          "reported": false,
+          "answers": {
+              "3437180": {
+                  "id": 3437180,
+                  "body": "Something pretty soft but I can't be sure",
+                  "date": "2018-02-12T00:00:00.000Z",
+                  "answerer_name": "mrmrs",
+                  "helpfulness": 0,
+                  "photos": []
+              },
+              "3437191": {
+                  "id": 3437191,
+                  "body": "Its the best! Seriously magic fabric",
+                  "date": "2018-03-12T00:00:00.000Z",
+                  "answerer_name": "mrmrs",
+                  "helpfulness": 1,
+                  "photos": []
+              },
+              "3437196": {
+                  "id": 3437196,
+                  "body": "Supposedly suede, but I think its synthetic",
+                  "date": "2018-03-12T00:00:00.000Z",
+                  "answerer_name": "mrmrs",
+                  "helpfulness": 2,
+                  "photos": []
+              },
+              "3437220": {
+                  "id": 3437220,
+                  "body": "Suede",
+                  "date": "2018-03-12T00:00:00.000Z",
+                  "answerer_name": "mrmrs",
+                  "helpfulness": 9,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 367443,
+          "question_body": "Where is this product made?",
+          "question_date": "2019-06-12T00:00:00.000Z",
+          "asker_name": "iluvcatz",
+          "question_helpfulness": 5,
+          "reported": false,
+          "answers": {
+              "3437221": {
+                  "id": 3437221,
+                  "body": "Manufactured in Mexico City",
+                  "date": "2019-12-12T00:00:00.000Z",
+                  "answerer_name": "Seller",
+                  "helpfulness": 4,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 367447,
+          "question_body": "Does this product run big or small?",
+          "question_date": "2018-08-04T00:00:00.000Z",
+          "asker_name": "jbilas",
+          "question_helpfulness": 4,
+          "reported": false,
+          "answers": {
+              "3437172": {
+                  "id": 3437172,
+                  "body": "It runs pretty wide on me",
+                  "date": "2018-09-04T00:00:00.000Z",
+                  "answerer_name": "dschulman",
+                  "helpfulness": 4,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 367444,
+          "question_body": "Can I wash it?",
+          "question_date": "2018-09-24T00:00:00.000Z",
+          "asker_name": "cleopatra",
+          "question_helpfulness": 4,
+          "reported": false,
+          "answers": {
+              "3437181": {
+                  "id": 3437181,
+                  "body": "I've thrown it in the wash and it seems fine",
+                  "date": "2018-10-24T00:00:00.000Z",
+                  "answerer_name": "marcanthony",
+                  "helpfulness": 1,
+                  "photos": []
+              },
+              "3437182": {
+                  "id": 3437182,
+                  "body": "It says not to",
+                  "date": "2018-10-24T00:00:00.000Z",
+                  "answerer_name": "marcanthony",
+                  "helpfulness": 12,
+                  "photos": []
+              },
+              "3437183": {
+                  "id": 3437183,
+                  "body": "Yes",
+                  "date": "2018-10-24T00:00:00.000Z",
+                  "answerer_name": "ceasar",
+                  "helpfulness": 3,
+                  "photos": []
+              },
+              "3437213": {
+                  "id": 3437213,
+                  "body": "I wouldn't machine wash it",
+                  "date": "2018-10-24T00:00:00.000Z",
+                  "answerer_name": "ceasar",
+                  "helpfulness": 2,
+                  "photos": []
+              },
+              "3437240": {
+                  "id": 3437240,
+                  "body": "Only if you want to ruin it!",
+                  "date": "2018-10-24T00:00:00.000Z",
+                  "answerer_name": "ceasar",
+                  "helpfulness": 1,
+                  "photos": []
+              }
+          }
+      },
+      {
+          "question_id": 367445,
+          "question_body": "Why is this product cheaper here than other sites?",
+          "question_date": "2019-04-04T00:00:00.000Z",
+          "asker_name": "h@ckerwhiz",
+          "question_helpfulness": 2,
+          "reported": false,
+          "answers": {
+              "3437184": {
+                  "id": 3437184,
+                  "body": "We are selling it here without any markup from the middleman!",
+                  "date": "2018-11-08T00:00:00.000Z",
+                  "answerer_name": "Seller",
+                  "helpfulness": 4,
+                  "photos": []
+              }
+          }
+      }
+  ]
+}
+]
