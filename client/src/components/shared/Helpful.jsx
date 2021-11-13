@@ -61,7 +61,7 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
       <span style={fontStyle} className="qHelpful">
         Helpful?
         {' '}
-        <a onClick={isHelpful} style={helpLinkStyling}>
+        <a onClick={isHelpful} style={helpLinkStyling} data-testid="helpful">
           Yes(
           {helpful}
           )
