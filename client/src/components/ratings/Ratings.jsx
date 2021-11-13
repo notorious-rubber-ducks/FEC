@@ -7,6 +7,7 @@ import AppContext from '../../hooks/context.js';
 const Ratings = ({ captureMetaData }) => {
   const context = useContext(AppContext).defaultItem;
   const [reviewData, setReviewData] = useState();
+  const [filteredData, setFilteredData] = useState();
   const [metaData, setMetaData] = useState();
   const [firstTwo, setFirstTwo] = useState();
   const [size, setSize] = useState();
@@ -39,10 +40,10 @@ const Ratings = ({ captureMetaData }) => {
         display: 'flex',
         flex: '0 0 30%',
         width: '50%',
-        marginLeft: 10,
+        marginLeft: '2%',
       }}
       >
-        <h2>RATINGS AND REVIEWS</h2>
+        <h2>Ratings and Reviews</h2>
       </div>
       <div style={{
         display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', margin: '2%',
@@ -53,13 +54,14 @@ const Ratings = ({ captureMetaData }) => {
           flexBasis: '40%', flex: '0 0 30%', width: '50%',
         }}
         >
-          <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} />
+          <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} setData={setFilteredData} />
         </div>
 
-        <div className="scrollable" style={{ flex: '0 0 80%', overflowY: 'scroll', maxHeight: '600px', padding:10}}>
+        <div className="scrollable" style={{ flex: '0 0 80%', overflowY: 'scroll', maxHeight: '600px' }}>
           <ReviewsList
             reviewDataProps={reviewData}
             metaDataProps={metaData}
+            filtered={filteredData}
             size={size}
             firstTwo={firstTwo}
           />
