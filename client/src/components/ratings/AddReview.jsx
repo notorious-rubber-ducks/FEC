@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UploadFile from '../sharedComponents/UploadFile.jsx';
+import CharObj from './CharObj';
 
 const AddReview = ({ props, data }) => {
   const postObj = {

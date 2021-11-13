@@ -2,14 +2,14 @@ import React from 'react';
 import StarRatings from '../sharedComponents/StarRatings.jsx';
 import { metaObj } from './CharObj.js';
 
-const MetaDataComponent = ({
-  reviewDataProps, metaDataProps, setData,
-}) => {
+const MetaDataComponent = ({ reviewDataProps, metaDataProps, setData }) => {
   const avgRating = () => Math.round(
     (reviewDataProps.results.reduce(
       (a, b) => (a + b.rating), 0,
     ) / reviewDataProps.results.length) * 10,
   ) / 10;
+
+  const totalRatings = () => Object.values(metaDataProps.ratings).reduce((a, b) => (a + parseInt(b)), 0);
 
   const filterRating = (num) => reviewDataProps.results.filter((item) => item.rating === num);
 
@@ -22,7 +22,6 @@ const MetaDataComponent = ({
         <div style={{ fontSize: '35px', marginRight: '6%' }}>{reviewDataProps ? <h1>{avgRating()}</h1> : null}</div>
         <div>{reviewDataProps ? <StarRatings id={reviewDataProps.product} /> : null}</div>
       </div>
-
       { metaDataProps ? Object.keys(metaDataProps.ratings).reverse().map((key) => (
         <div style={{ margin: '2%' }}>
           <label
@@ -36,7 +35,7 @@ const MetaDataComponent = ({
             stars
             {' '}
           </label>
-          <meter className="ratings" value={metaDataProps.ratings[key]} min="0" max="10" style={{ width: '70%' }} optimum="1" />
+          <meter className="ratings" value={(metaDataProps.ratings[key] / totalRatings()) * 100} min="0" max="100" style={{ width: '70%' }} optimum="1" />
         </div>
       )) : null}
       <br />
