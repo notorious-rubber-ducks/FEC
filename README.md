@@ -26,4 +26,4 @@ build:prod and then start.
 
 ### Notorious Rubber Ducks
 
-![notorious rubber duck](https://imgur.com/e1dGjWD)
+![notorious rubber duck](https://i.imgur.com/e1dGjWD.png)
