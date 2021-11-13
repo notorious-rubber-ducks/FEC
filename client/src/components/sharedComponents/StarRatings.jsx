@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const StarRatings = ({ id }) => {
+const StarRatings = ({ id, single }) => {
   const [avgRating, setAvgRating] = useState();
 
   useEffect(() => {
@@ -19,7 +19,9 @@ const StarRatings = ({ id }) => {
   return (
     <div className="ratings">
       <div className="empty-stars" />
-      <div className="full-stars" style={{ width: `${(avgRating * 100) / 5}%` }} />
+      {single ? <div className="full-stars" style={{ width: `${(single * 100) / 5}%` }} />
+        : <div className="full-stars" style={{ width: `${(avgRating * 100) / 5}%` }} />}
+
     </div>
   );
 };

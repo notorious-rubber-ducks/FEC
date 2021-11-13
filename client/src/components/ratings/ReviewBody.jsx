@@ -49,7 +49,7 @@ const ReviewBody = ({ props }) => {
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ marginRight: '2%' }}>
           {' '}
-          <StarRatings id={context.id} />
+          <StarRatings id={context.id} single={props.rating} />
         </div>
         <div
           className="Summary"

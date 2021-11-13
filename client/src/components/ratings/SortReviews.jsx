@@ -4,9 +4,6 @@ import { render } from 'react-dom';
 const SortReviews = ({
   data, setData, setRender, test,
 }) => {
-  const [newData, setNewData] = useState();
-  const [firstTwo, setFirstTwo] = useState();
-
   const sortReviewsFunction = (filter) => {
     if (filter === 'Relevance') {
       return data.results.slice().sort((a, b) => {
@@ -22,16 +19,15 @@ const SortReviews = ({
         const newDateB = new Date(b.date);
         return newDateB - newDateA;
       });
+    } if (filter === 'Rating') {
+      return data.results.slice().sort((a, b) => b.rating - a.rating);
     }
   };
-
-  // const updateParent = (e) => sortReviewsFunction(e.target.value);
 
   return (
 
     <div>
       {' '}
-      {/* {data ? console.log(updateParent(), ' right hurr') : null} */}
       <select
         name="filter"
         id="filter"
@@ -43,6 +39,7 @@ const SortReviews = ({
         <option value="Relevance">Relevance</option>
         <option value="Helpful">Helpful</option>
         <option value="Newest">Newest</option>
+        <option value="Rating">Rating</option>
       </select>
     </div>
   );

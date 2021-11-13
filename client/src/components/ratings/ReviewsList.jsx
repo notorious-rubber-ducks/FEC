@@ -5,7 +5,7 @@ import ReviewBody from './ReviewBody.jsx';
 import SortReviews from './SortReviews.jsx';
 
 const ReviewsList = ({
-  reviewDataProps, metaDataProps, size, firstTwo,
+  reviewDataProps, metaDataProps, size, firstTwo, filtered,
 }) => {
   const [reviewList, setReviewList] = useState();
   const [data, setData] = useState();
@@ -51,7 +51,8 @@ const ReviewsList = ({
       {' '}
 
       {reviewModal ? <AddReview props={reviewModal} data={metaDataProps} /> : null}
-      {reviewDataProps ? (reviewList ? reviewList.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />) : reviewDataProps.results.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />)) : null}
+      {filtered ? filtered.map((review) => <ReviewBody props={review} />)
+        : reviewDataProps ? (reviewList ? reviewList.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />) : reviewDataProps.results.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />)) : null}
       <div style={{ marginTop: '2%' }}>
         {listSize > 2 ? <button type="submit" onClick={handleClick}>Show More</button> : null }
         <button type="submit" onClick={openReviewModal}>Add Review </button>
