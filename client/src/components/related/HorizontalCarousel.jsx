@@ -17,12 +17,12 @@ export default function HorizontalCarousel({ items }) {
 
   const [location, setLocation] = useState(0);
 
-  function handleScrollClick(e) {
+  function handleScrollClick(direction) {
     // scroll pictures in div and set location state depending on which button is clicked
-    if (e.target.innerText === '<') {
+    if (direction === '<') {
       document.getElementById(`carousel-inner-${identifier}`).scrollLeft -= (location === 0 ? 0 : cardWidth);
       setLocation(location < 0 ? location : location - cardWidth);
-    } else if (e.target.innerText === '>') {
+    } else if (direction === '>') {
       document.getElementById(`carousel-inner-${identifier}`).scrollLeft += (
         location > cardWidth * items.length ? 0 : cardWidth
       );
@@ -43,7 +43,7 @@ export default function HorizontalCarousel({ items }) {
       {/* Back Button */}
       {location <= 0 ? emptyButton
         : (
-          <button className="carousel-button" onClick={handleScrollClick} type="button">
+          <button className="carousel-button" onClick={() => { handleScrollClick('<'); }} type="button">
             <span>{'<'}</span>
           </button>
         )}
@@ -85,7 +85,7 @@ export default function HorizontalCarousel({ items }) {
       {/* Forward Button */}
       {(location + document.getElementById('app').clientWidth) >= (items.length * cardWidth + 42.5 * 2) ? emptyButton
         : (
-          <button className="carousel-button" onClick={handleScrollClick} type="button">
+          <button className="carousel-button" onClick={() => { handleScrollClick('>'); }} type="button">
             <span>{'>'}</span>
           </button>
         )}
