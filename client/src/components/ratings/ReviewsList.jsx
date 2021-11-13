@@ -5,7 +5,7 @@ import ReviewBody from './ReviewBody.jsx';
 import SortReviews from './SortReviews.jsx';
 
 const ReviewsList = ({
-  reviewDataProps, metaDataProps, size, firstTwo, filtered,
+  reviewDataProps, metaDataProps, size, firstTwo, filtered, setFiltered,
 }) => {
   const [reviewList, setReviewList] = useState();
   const [data, setData] = useState();
@@ -24,6 +24,10 @@ const ReviewsList = ({
 
   const openReviewModal = () => {
     setReviewModal(!reviewModal);
+  };
+
+  const clearFilters = () => {
+    setReviewList(data);
   };
 
   useEffect(() => {
@@ -49,14 +53,18 @@ const ReviewsList = ({
 
       </div>
       {' '}
+      <div className="scrollable" style={{ overflowY: 'scroll', maxHeight: 500, paddingRight: 8 }}>
 
-      {reviewModal ? <AddReview props={reviewModal} data={metaDataProps} /> : null}
-      {filtered ? filtered.map((review) => <ReviewBody props={review} />)
-        : reviewDataProps ? (reviewList ? reviewList.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />) : reviewDataProps.results.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />)) : null}
+        {filtered ? filtered.map((review) => <ReviewBody props={review} />)
+          : reviewDataProps ? (reviewList ? reviewList.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />) : reviewDataProps.results.slice(0, sliceIndex).map((review) => <ReviewBody props={review} />)) : null}
+      </div>
       <div style={{ marginTop: '2%' }}>
         {listSize > 2 ? <button type="submit" onClick={handleClick}>Show More</button> : null }
+        {reviewModal ? <AddReview props={reviewModal} data={metaDataProps} /> : null}
         <button type="submit" onClick={openReviewModal}>Add Review </button>
+        <button type="button" onClick={() => setFiltered(null)}>Clear Filters</button>
       </div>
+
     </div>
 
   );

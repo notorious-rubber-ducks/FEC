@@ -46,22 +46,23 @@ const Ratings = ({ captureMetaData }) => {
         <h2>Ratings and Reviews</h2>
       </div>
       <div style={{
-        display: 'flex', alignItems: 'stretch', flexDirection: 'row', width: '80%', margin: '2%',
+        display: 'flex', alignItems: 'stretch', flexDirection: 'row', margin: '2%',
       }}
       >
 
         <div style={{
-          flexBasis: '40%', flex: '0 0 30%', width: '50%',
+          flexBasis: '40%', flex: '0 0 30%', width: '50%', paddingTop: 'none', marginTop: 'none',
         }}
         >
           <MetaDataComponent reviewDataProps={reviewData} metaDataProps={metaData} setData={setFilteredData} />
         </div>
 
-        <div className="scrollable" style={{ flex: '0 0 80%', overflowY: 'scroll', maxHeight: '600px' }}>
+        <div style={{ flex: '0 0 70%', maxHeight: '600px', maxWidth: '80%' }}>
           <ReviewsList
             reviewDataProps={reviewData}
             metaDataProps={metaData}
             filtered={filteredData}
+            setFiltered={setFilteredData}
             size={size}
             firstTwo={firstTwo}
           />
