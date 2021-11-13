@@ -48,28 +48,34 @@ export default function App() {
 
   return (
     <div className={mode ? 'dark' : 'light'}>
-      <div style={{padding:5, float:'right'}}>
-        <button onClick={() => {
-          if (!mode) {
-            document.getElementById('container').setAttribute('style', 'background-color: black')
-            setMode(true);
-          } else {
-            document.getElementById('container').setAttribute('style', 'background-color: #bbd5ed')
-            setMode(false);
-          }
-        }}>{mode ? 'light' : 'dark'}</button>
+      <div style={{ padding: 5, float: 'right' }}>
+        <button
+          type="button"
+          onClick={() => {
+            if (!mode) {
+              document.getElementById('container').setAttribute('style', 'background-color: black');
+              setMode(true);
+            } else {
+              document.getElementById('container').setAttribute('style', 'background-color: #bbd5ed');
+              setMode(false);
+            }
+          }}
+        >
+          {mode ? 'light' : 'dark'}
+
+        </button>
       </div>
-    <AppContext.Provider value={{
-      defaultItem, setDefaultItem, imageDirs, setImageDirs, mode, setMode
-    }}
-    >
-      <MetaData>
-        <Overview key="overview" />
-        <Related key="related" />
-        <Questions key="questions" />
-        <Ratings key="ratings" />
-      </MetaData>
-    </AppContext.Provider>
+      <AppContext.Provider value={{
+        defaultItem, setDefaultItem, imageDirs, setImageDirs, mode, setMode,
+      }}
+      >
+        <MetaData>
+          <Overview key="overview" />
+          <Related key="related" />
+          <Questions key="questions" />
+          <Ratings key="ratings" />
+        </MetaData>
+      </AppContext.Provider>
 
     </div>
   );
