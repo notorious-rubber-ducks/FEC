@@ -34,7 +34,7 @@ export default function QuestionModal({ closeModal }) {
       && question !== '') {
       console.log('all fields are valid');
       // submit form
-      axios.post('http://localhost:3000/qa/questions', {
+      axios.post(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}qa/questions`, {
         body: question, name: nickname, email, product_id: currItem.id,
       })
         .then(() => {

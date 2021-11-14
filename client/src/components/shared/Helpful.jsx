@@ -28,11 +28,11 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
   }
 
   if (calledFrom === 'q') {
-    apiEndPoint = `/qa/questions/${id}`;
+    apiEndPoint = `qa/questions/${id}`;
   } else if (calledFrom === 'a') {
-    apiEndPoint = `/qa/answers/${id}`;
+    apiEndPoint = `qa/answers/${id}`;
   } else if (calledFrom === 'review') {
-    apiEndPoint = `/reviews/${id}`;
+    apiEndPoint = `reviews/${id}`;
   }
 
   const fontStyle = {
@@ -44,7 +44,7 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
       console.log('should only see this once');
       setHelpful(helpfulness + 1);
       setVoted(true);
-      axios.put(`http://localhost:3000${apiEndPoint}/helpful`);
+      axios.put(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}${apiEndPoint}/helpful`);
     }
   }
 
@@ -52,7 +52,7 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
     if (reported === 'Report') {
       console.log('should only see this once');
       setReported('Reported');
-      axios.put(`http://localhost:3000${apiEndPoint}/report`);
+      axios.put(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}${apiEndPoint}/report`);
     }
   }
 
