@@ -41,7 +41,6 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
 
   function isHelpful() {
     if (!voted) {
-      console.log('should only see this once');
       setHelpful(helpfulness + 1);
       setVoted(true);
       axios.put(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}${apiEndPoint}/helpful`);
@@ -50,7 +49,6 @@ export default function Helpful({ helpfulness, calledFrom, id }) {
 
   function report() {
     if (reported === 'Report') {
-      console.log('should only see this once');
       setReported('Reported');
       axios.put(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}${apiEndPoint}/report`);
     }

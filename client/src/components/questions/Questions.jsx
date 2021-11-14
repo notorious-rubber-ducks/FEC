@@ -20,7 +20,6 @@ export default function Questions({ captureMetaData }) {
     setAdditional(false);
     axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}qa/questions/?product_id=${currItem.id}&count=100`)
       .then(({ data }) => {
-      // console.log(data);
         setQuestions(data.results);
       })
       .catch((err) => err);

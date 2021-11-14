@@ -10,7 +10,6 @@ export default function Overview({ captureMetaData }) {
   const { defaultItem } = useContext(AppContext);
 
   function getDefaultStyle() {
-    console.log(defaultItem);
     let defaultStyle = defaultItem.results.filter((item) => item['default?'] === true)[0];
     // if there is no default style just use the first item in the results array
     if (defaultStyle === undefined) {

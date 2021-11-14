@@ -30,7 +30,6 @@ export default function App() {
         ])
           .then((values) => {
             // set default item to be a combination of both API call results
-            console.log(values);
             setDefaultItem(Object.assign(values[0], values[1]));
             // set loading to false so page will render
             setLoading(false);
