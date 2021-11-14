@@ -16,20 +16,21 @@ export default function App() {
   const [mode, setMode] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products')
+    axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products`)
       .then((response) => {
         // get first item
         const { id } = response.data[0];
 
         // generate promise array and pass into promise all
         Promise.all([
-          axios.get(`http://localhost:3000/products/${id}`)
+          axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${id}`)
             .then(({ data }) => data),
-          axios.get(`http://localhost:3000/products/${id}/styles`)
+          axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${id}/styles`)
             .then(({ data }) => (data)),
         ])
           .then((values) => {
             // set default item to be a combination of both API call results
+            console.log(values);
             setDefaultItem(Object.assign(values[0], values[1]));
             // set loading to false so page will render
             setLoading(false);

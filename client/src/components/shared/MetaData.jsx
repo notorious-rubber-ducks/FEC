@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 
 export default function MetaData({ children }) {
   const captureMetaData = function (e, target) {
-    axios.post('http://localhost:3000/interactions', {
+    axios.post(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}interactions`, {
       element: e.target.localName,
       widget: target,
       time: new Date(),

@@ -18,7 +18,7 @@ export default function Related({ captureMetaData }) {
   // define variable to get the related item array
   function getRelated(id) {
     // get list of related items
-    axios.get(`http://localhost:3000/products/${id}/related`)
+    axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${id}/related`)
       .then((response) => {
         // clean up related data coming in from API so related item array only has unique values
         const relatedArray = response.data.filter(
@@ -26,11 +26,11 @@ export default function Related({ captureMetaData }) {
         );
 
         // create an array of promises for style data
-        const stylePromise = relatedArray.map((item) => axios.get(`http://localhost:3000/products/${item}/styles`)
+        const stylePromise = relatedArray.map((item) => axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${item}/styles`)
           .then(({ data }) => data));
 
         // create an array of promises for normal data
-        const normalPromise = relatedArray.map((product) => axios.get(`http://localhost:3000/products/${product}`)
+        const normalPromise = relatedArray.map((product) => axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${product}`)
           .then(({ data }) => data));
 
         // use promise all on the array of promises so that when resolved the results
