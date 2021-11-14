@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import Answer from './Answers.jsx';
 import Helpful from '../shared/Helpful.jsx';
 import AppContext from '../../hooks/context.js';

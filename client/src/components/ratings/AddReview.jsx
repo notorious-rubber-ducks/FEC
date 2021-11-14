@@ -26,7 +26,7 @@ const AddReview = ({ props, data }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('/reviews', postObject);
+      .post(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}reviews`, postObject);
   };
 
   const handleChange = (event) => {

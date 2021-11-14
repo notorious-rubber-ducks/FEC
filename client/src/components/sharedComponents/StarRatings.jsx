@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -6,7 +7,7 @@ const StarRatings = ({ id, single }) => {
 
   useEffect(() => {
     axios
-      .get(`/reviews/?product_id=${id}`)
+      .get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}reviews/?product_id=${id}`)
       .then(({ data }) => {
         setAvgRating(
           data.results.length === 0 ? setAvgRating(0)
