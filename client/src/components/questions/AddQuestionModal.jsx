@@ -14,7 +14,6 @@ export default function QuestionModal({ closeModal }) {
   let fails = [];
 
   const FailedDOM = function () {
-    console.log('in component', failedFields);
     return (
       <p>
         You must enter the following:
@@ -32,13 +31,11 @@ export default function QuestionModal({ closeModal }) {
       && email.includes('@')
       && email.includes('.')
       && question !== '') {
-      console.log('all fields are valid');
       // submit form
       axios.post(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}qa/questions`, {
         body: question, name: nickname, email, product_id: currItem.id,
       })
         .then(() => {
-          console.log('success');
           closeModal(false);
         })
         .catch((err) => console.error(err));
@@ -52,7 +49,6 @@ export default function QuestionModal({ closeModal }) {
       if (question === '') {
         fails.push('Question');
       }
-      console.log(fails);
       setFailedFields(fails);
       setFailed(true);
     }

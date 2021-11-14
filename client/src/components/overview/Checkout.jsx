@@ -39,9 +39,7 @@ export default function Checkout({ currentStyle }) {
       alert('You must select a quantity');
     }
     if (currQty && currentSku) {
-      console.log('valid cart');
       axios.post(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}cart`, { sku_id })
-        .then((status) => console.log(status))
         .catch((err) => console.error(err));
     }
   };

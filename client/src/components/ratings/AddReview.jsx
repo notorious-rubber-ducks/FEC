@@ -26,10 +26,7 @@ const AddReview = ({ props, data }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('/reviews', postObject)
-      .then(() => {
-        console.log('success!!');
-      });
+      .post('/reviews', postObject);
   };
 
   const handleChange = (event) => {
