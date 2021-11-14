@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import AddReview from './AddReview.jsx';
 import ReviewBody from './ReviewBody.jsx';
 import SortReviews from './SortReviews.jsx';

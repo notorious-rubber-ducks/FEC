@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import Helpful from '../shared/Helpful.jsx';
 import ImageModal from '../shared/ImageModal.jsx';
 
