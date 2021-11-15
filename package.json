@@ -4,7 +4,7 @@
   "description": "online store page",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config ./jest.config.js",
+    "test": "jest --config ./jest.config.js --silent",
     "build": "webpack --config ./webpack.dev.js -w",
     "build:prod": "webpack --config webpack.prod.js",
     "start": "nodemon server.js"

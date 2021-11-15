@@ -3,6 +3,7 @@ import UploadFile from '../sharedComponents/UploadFile.jsx';
 import StarRatings from '../sharedComponents/StarRatings.jsx';
 import AppContext from '../../hooks/context.js';
 import Helpful from '../shared/Helpful.jsx';
+import ImageModal from '../shared/ImageModal.jsx';
 
 const ReviewBody = ({ props }) => {
   const context = useContext(AppContext).defaultItem;
@@ -10,6 +11,8 @@ const ReviewBody = ({ props }) => {
   const [bodyLength, setBodyLength] = useState();
   const [body, setBody] = useState();
   const [summary, setSummary] = useState();
+  const [imgModalInstance, setImgModalInstance] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
     setBody(data.body);
@@ -18,11 +21,16 @@ const ReviewBody = ({ props }) => {
   const date = () => {
     let today = new Date(data.date);
     const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();
 
     today = `${mm}/${dd}/${yyyy}`;
     return today;
+  };
+
+  const imgModal = function (src) {
+    setImgModalInstance((<ImageModal closeModal={setShowModal} image={src} />));
+    setShowModal(true);
   };
 
   useEffect(() => {
@@ -34,6 +42,8 @@ const ReviewBody = ({ props }) => {
 
   return (
     <div>
+      {props ? console.log(props.photos, 'photos') : null}
+      {showModal ? imgModalInstance : null}
       <div style={{
         display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '2%',
       }}
@@ -63,6 +73,18 @@ const ReviewBody = ({ props }) => {
       <div className="Body" style={{ paddingBottom: '1%', paddingTop: '1%', borderBottom: '1px solid' }}>
         {body}
         <br />
+        {props.photos ? props.photos.map((image, index) => (
+          <span key={index}>
+            <img
+              src={image.url}
+              style={{
+                width: 50, height: 50, border: '1px solid black', objectFit: 'cover',
+              }}
+              onClick={() => { imgModal(image.url); }}
+              alt={`thumbnail${index}`}
+            />
+          </span>
+        )) : null}
         <br />
         <Helpful helpfulness={props.helpfulness} calledFrom="review" id={context.id} />
 
