@@ -54,7 +54,7 @@ export default function HorizontalCarousel({ items }) {
         id={`carousel-inner-${identifier}`}
       >
         {// render product cards
-        items.map((item) => {
+        items.filter((prod) => (prod.campus !== undefined || prod === 'Add to Outfit')).map((item) => {
           // need to define key and redefine if needed
           // so there are unique keys
           let key = item.id;

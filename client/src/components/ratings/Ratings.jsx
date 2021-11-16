@@ -40,10 +40,10 @@ const Ratings = ({ captureMetaData }) => {
         display: 'flex',
         flex: '0 0 30%',
         width: '50%',
-        marginLeft: '2%',
+        marginLeft: '10px',
       }}
       >
-        <h2>Ratings and Reviews</h2>
+        <h2>RATINGS AND REVIEWS</h2>
       </div>
       <div style={{
         display: 'flex', alignItems: 'stretch', flexDirection: 'row', margin: '2%',
