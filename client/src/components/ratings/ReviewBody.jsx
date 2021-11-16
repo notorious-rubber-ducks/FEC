@@ -42,7 +42,6 @@ const ReviewBody = ({ props }) => {
 
   return (
     <div>
-      {props ? console.log(props.photos, 'photos') : null}
       {showModal ? imgModalInstance : null}
       <div style={{
         display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '2%',
