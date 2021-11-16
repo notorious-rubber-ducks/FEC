@@ -18,9 +18,8 @@ export default function Questions({ captureMetaData }) {
 
   useEffect(() => {
     setAdditional(false);
-    axios.get(`http://localhost:3000/qa/questions/?product_id=${currItem.id}&count=100`)
+    axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}qa/questions/?product_id=${currItem.id}&count=100`)
       .then(({ data }) => {
-      // console.log(data);
         setQuestions(data.results);
       })
       .catch((err) => err);
@@ -75,9 +74,15 @@ export default function Questions({ captureMetaData }) {
   }
 
   return (
-    <div id='questions' onClick={e => captureMetaData(e, 'questions')}>
-      {showModal && <QuestionModal closeModal={setShowModal}/>}
-      <h2>QUESTIONS {'&'} ANSWERS</h2>
+    <div id="questions" onClick={(e) => captureMetaData(e, 'questions')}>
+      {showModal && <QuestionModal closeModal={setShowModal} />}
+      <h2>
+        QUESTIONS
+        {' '}
+        &
+        {' '}
+        ANSWERS
+      </h2>
       <div>
         <input type="text" placeholder="Have a question? Search for answers..." className="qSearch" onChange={getSearch} />
       </div>

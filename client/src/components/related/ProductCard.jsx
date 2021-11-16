@@ -27,9 +27,9 @@ export default function ProductCard({ product, setLocation, identifier }) {
   function handleProductCardClick() {
     // change app level product id
     Promise.all([
-      axios.get(`http://localhost:3000/products/${product.id}`)
+      axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${product.id}`)
         .then(({ data }) => data),
-      axios.get(`http://localhost:3000/products/${product.id}/styles`)
+      axios.get(`${process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'}products/${product.id}/styles`)
         .then(({ data }) => (data)),
     ])
       .then((values) => {

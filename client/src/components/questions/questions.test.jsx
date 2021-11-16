@@ -2,7 +2,6 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import App from '../../App.jsx';
 import AppContext from '../../hooks/context.js';
 import Questions from './Questions.jsx';
 
@@ -22,15 +21,25 @@ describe('questions component unit tests', () => {
 
   test('clicking Helpful should increase count by 1', async () => {
     let component;
+    let firstBtn;
+    let before;
+    let after;
     await act(async () => {
       const defaultItem = { id: '44388' };
       component = render(<AppContext.Provider value={{ defaultItem }}>
         <Questions captureMetaData={() => {}} />
       </AppContext.Provider>);
-      await component.findByText('Yes(501)');
-      fireEvent.click(screen.getByText('Yes(501)'));
+      firstBtn = await component.findAllByTestId('helpful');
+      before = firstBtn[0].innerHTML;
+      let getNum = before.split('(');
+      before = getNum[1].slice(0, -1);
+      fireEvent.click(firstBtn[0]);
+      fireEvent.click(firstBtn[0]);
+      after = firstBtn[0].innerHTML;
+      getNum = after.split('(');
+      after = getNum[1].slice(0, -1);
     });
-    expect(screen.queryByText('Yes(502)')).toBeInTheDocument;
+    expect(parseInt(after) - parseInt(before)).toBe(1);
   });
 
   test('clicking Ask a Question should open modal', async () => {
