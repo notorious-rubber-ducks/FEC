@@ -33,7 +33,7 @@ const SortReviews = ({
         id="filter"
         onChange={(e) => setData(sortReviewsFunction(e.target.value))}
         style={{
-          backgroundColor: 'transparent', border: '1px solid #d9bfb7', fontWeight: 'bold', fontSize: '18px',
+          backgroundColor: 'transparent', border: 'none', fontWeight: 'bold', fontSize: '18px',
         }}
       >
         <option value="Relevance">Relevance</option>

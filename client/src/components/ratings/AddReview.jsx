@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UploadFile from '../sharedComponents/UploadFile.jsx';
-import CharObj from './CharObj';
+import { charObj } from './CharObj.js';
+import ImageModal from '../shared/ImageModal.jsx';
 
-const AddReview = ({ props, data }) => {
+const AddReview = ({ props, data, close }) => {
   const postObj = {
     product_id: parseInt(data.product_id),
     rating: null,
@@ -11,7 +12,7 @@ const AddReview = ({ props, data }) => {
     body: '',
     recommend: null,
     name: '',
-    email: 'hi@gmail.com',
+    email: '',
     photos: [],
     characteristics: {
       [data.characteristics.Fit.id]: 0,
@@ -30,6 +31,7 @@ const AddReview = ({ props, data }) => {
   };
 
   const handleChange = (event) => {
+    event.preventDefault();
     const newRequest = { ...postObject };
     if (event.target.name === 'rating') {
       newRequest[event.target.name] = parseInt(event.target.value, 10);
@@ -60,57 +62,104 @@ const AddReview = ({ props, data }) => {
         ? (
           <div className="modalBackground">
             <div className="modalContainer">
-              <div className="scroller">
+              <div className="scrollable">
                 <div className="titleCloseBtn">
                   <button type="submit" onClick={handleClick}>X</button>
                 </div>
-                <div className="title">
+                <div className="title" style={{ marginBottom: '4%', fontWeight: 'bold', fontSize: 25 }}>
                   Add Review
+
                 </div>
+                <br />
+                <div style={{ borderTop: '1px solid lightgray', maxWidth: '100%' }} />
+                <br />
                 <form onSubmit={handleSubmit}>
-                  <label htmlFor="rating">Rate this product:</label>
-                  <select name="rating" id="rating" onChange={handleChange}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
+                  <label style={{ fontWeight: 'bold' }} htmlFor="rating">Rate this product:</label>
+
+                  <div className="star-rating">
+                    <input type="radio" name="rating" id="star-a" value="5" onClick={handleChange} />
+                    <label htmlFor="star-a" value={postObject.rating} />
+
+                    <input type="radio" name="rating" id="star-b" value="4" onClick={handleChange} />
+                    <label htmlFor="star-b" value={postObject.rating} />
+
+                    <input type="radio" name="rating" id="star-c" value="3" onClick={handleChange} />
+                    <label htmlFor="star-c" value={postObject.rating} />
+
+                    <input type="radio" name="rating" id="star-d" value="2" onClick={handleChange} />
+                    <label htmlFor="star-d" value={postObject.rating} />
+
+                    <input type="radio" name="rating" id="star-e" value="1" onClick={handleChange} />
+                    <label htmlFor="star-e" value={postObject.rating} />
+                  </div>
+                  <label style={{ fontWeight: 'bold' }}> Add a brief summary of the product</label>
                   <br />
                   <input type="text" id="fname" name="summary" placeholder="Add a brief summary here" onChange={handleChange} value={postObject.summary} />
                   <br />
                   <br />
+                  <label style={{ fontWeight: 'bold' }} htmlFor="rating">Add a detailed review of the product</label>
+                  <br />
                   <textarea className="a" name="body" value={postObject.body} onChange={handleChange} rows="15" cols="40" placeholder="Add your review here" style={{ resize: 'none', width: 'content-fit' }} />
-                  <label htmlFor="recommend"> Would you recommend this product?</label>
+                  <br />
+                  <br />
+                  <label style={{ fontWeight: 'bold' }} htmlFor="recommend"> Would you recommend this product?</label>
                   <br />
                   <label htmlFor="recommendyes"> Yes</label>
-                  <input type="checkbox" id="recommendyes" name="recommend" value={1} onChange={handleChange} />
+                  <input type="radio" id="recommendyes" name="recommend" value={1} onChange={handleChange} />
                   <label htmlFor="recommendno"> No</label>
-                  <input type="checkbox" id="recommendno" name="recommend" value={0} onChange={handleChange} />
+                  <input type="radio" id="recommendno" name="recommend" value={0} onChange={handleChange} />
+                  <br />
+                  <br />
+
+                  <label style={{ fontWeight: 'bold' }} htmlFor="rating">What's your name?</label>
                   <br />
                   <input type="text" id="fname" name="name" value={postObject.name} onChange={handleChange} placeholder="Your name here" />
                   <br />
                   <br />
-                  <label htmlFor="fit">Fit(From 1 to 5):</label>
+                  <label style={{ fontWeight: 'bold' }} htmlFor="rating">What's your e-mail?</label>
                   <br />
-                  Loose
-                  <input type="range" name={data.characteristics.Fit.id} value={postObject.characteristics[data.characteristics.Fit.id]} onChange={handleNestedChange} id="vol" min="0" max="5" />
-                  Tight
+                  <input type="text" id="femail" name="email" value={postObject.email} onChange={handleChange} placeholder="Your e-mail here" />
                   <br />
-                  <label htmlFor="length">Length (From 1 to 5):</label>
                   <br />
-                  <input type="range" id="vol" name={data.characteristics.Length.id} value={postObject.characteristics[data.characteristics.Length.id]} onChange={handleNestedChange} min="0" max="5" />
+                  {data ? Object.keys(data.characteristics).map((key) => (
+                    <div>
+                      <label htmlFor="ratings" style={{ fontWeight: 'bold' }}>
+                        {key}
+                      </label>
+                      <br />
+
+                      {
+                          Object.entries(charObj).filter((item) => item[0] === key).flat().splice(1, 1)
+                            .map((test) => (
+                              <span>
+                                <input type="radio" name={data.characteristics[key].id} value="1" onChange={handleNestedChange} />
+                                <label htmlFor="html" name={key} value={postObject.characteristics[data.characteristics[key].id]} style={{ paddingRight: 5 }}>{test[1]}</label>
+                                <input type="radio" name={data.characteristics[key].id} value="2" onChange={handleNestedChange} />
+                                <label htmlFor="html" name={key} value={postObject.characteristics[data.characteristics[key].id]} style={{ paddingRight: 5 }}>{test[2]}</label>
+                                <input type="radio" name={data.characteristics[key].id} value="3" onChange={handleNestedChange} />
+                                <label htmlFor="html" name={key} value={postObject.characteristics[data.characteristics[key].id]} style={{ paddingRight: 5 }}>{test[3]}</label>
+                                <input type="radio" name={data.characteristics[key].id} value="4" onChange={handleNestedChange} />
+                                <label htmlFor="html" name={key} value={postObject.characteristics[data.characteristics[key].id]} style={{ paddingRight: 5 }}>{test[4]}</label>
+                                <input type="radio" name={data.characteristics[key].id} value="4" onChange={handleNestedChange} />
+                                <label htmlFor="html" name={key} value={postObject.characteristics[data.characteristics[key].id]} style={{ paddingRight: 5 }}>{test[5]}</label>
+                                <br />
+                              </span>
+                            ))
+}
+                      <br />
+                    </div>
+                  )) : null}
                   <br />
-                  <label htmlFor="comfort">Comfort (From 1 to 5):</label>
+                  <label style={{ fontWeight: 'bold' }} htmlFor="Upload"> Add images to your review</label>
                   <br />
-                  <input type="range" id="vol" name={data.characteristics.Comfort.id} value={postObject.characteristics[data.characteristics.Comfort.id]} onChange={handleNestedChange} min="0" max="5" />
-                  <br />
-                  <label htmlFor="quality">Quality (From 1 to 5):</label>
-                  <br />
-                  <input type="range" id="vol" name={data.characteristics.Quality.id} value={postObject.characteristics[data.characteristics.Quality.id]} onChange={handleNestedChange} min="0" max="5" />
                   <UploadFile />
-                  <button type="button" onClick={handleSubmit}>Submit Review </button>
-                  <div className="footer" />
+
+                  <br />
+                  <div style={{ borderTop: '1px solid lightgray', maxWidth: '100%' }} />
+
+                  <br />
+
+                  <div className="footer"><button type="button" onClick={handleSubmit}>Submit Review </button></div>
                 </form>
               </div>
             </div>
